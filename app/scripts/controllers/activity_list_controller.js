@@ -7,6 +7,8 @@ angular.module('testApp')
        $scope.create_activity='创建活动';
        $scope.go_create_activity=function(){$location.path('/create_activity')};
 
-      // $scope.activities=[{'activity_name'，。。。。。。。。];
+        $scope.activity_name = JSON.parse(localStorage.getItem($scope.activity_name));
 
- })
+
+
+ });

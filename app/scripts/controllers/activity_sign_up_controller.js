@@ -5,7 +5,7 @@ angular.module('testApp')
 
          $scope.Back="返回";
          $scope.Start="开始";
-       $scope.back_to_activity_list=function(){$location.path('/activity_list')};
+         $scope.back_to_activity_list=function(){$location.path('/activity_list')};
 
 
  });
