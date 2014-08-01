@@ -9,24 +9,25 @@
 
 <header >
     创建活动
-    <button class="header-left"  ng-click='back_to_activity_list()'>{{back}}</button>
+    <div class="header-left">
+         <button  class="btn-style btn-4"   ng-click='back_to_activity_list()'>{{back}}</button>
+    </div>
 </header>
 
 
-<div class="break20">
-<div class="wrapper"  align="center">
+
+<div class="wrapper "  align="center">
     <h4>活动名称：</h4>
-    <input   ng-model='activity_name'   type='text'/>
+    <input   ng-model='activity_name'  class="input-full"  type='text'/>
 
 
     <p>
-        <button class="btn-style btn-4"  ng-click="go_activity_sign_up()">{{create_activity}}</button>
+        <button class="btn-style btn-2 "  ng-click="go_activity_sign_up()">{{create_activity}}</button>
     </p>
 
 
+</div>
 
-</div>
-</div>
 </body>
 </html>
 
