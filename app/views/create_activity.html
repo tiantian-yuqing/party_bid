@@ -2,27 +2,30 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>创建活动</title>
 </head>
 <body>
 
 
-<header class="header"  id='create_activity_page'>
+<header >
     创建活动
-    <button class="btn btn-primary header-left" ng-click='back_to_activity_list()'>Back</button>
+    <button class="header-left"  ng-click='back_to_activity_list()'>{{back}}</button>
 </header>
 
-<div class="wrapper">
+
+<div class="break20">
+<div class="wrapper"  align="center">
     <h4>活动名称：</h4>
-    <input class='well full'  ng-model='activity_name'          ng-disabled='true'  type='text'/>
+    <input   ng-model='activity_name'   type='text'/>
 
 
     <p>
-        <button class="btn-style btn-4"      ng-disabled='activity_name'  ng-click="go_activity_sign_up()">{{create_activity}}</button>
+        <button class="btn-style btn-4"  ng-click="go_activity_sign_up()">{{create_activity}}</button>
     </p>
 
 
 
+</div>
 </div>
 </body>
 </html>
