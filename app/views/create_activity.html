@@ -1,0 +1,29 @@
+
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<header class="header"  id='create_activity_page'>
+    创建活动
+    <button class="btn btn-primary header-left" ng-click='back_to_activity_list()'>Back</button>
+</header>
+
+<div class="wrapper">
+    <h4>活动名称：</h4>
+    <input class='well full'  ng-model='activity_name'          ng-disabled='true'  type='text'/>
+
+
+    <p>
+        <button class="btn-style btn-4"      ng-disabled='activity_name'  ng-click="go_activity_sign_up()">{{create_activity}}</button>
+    </p>
+
+
+
+</div>
+</body>
+</html>
+
