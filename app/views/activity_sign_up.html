@@ -8,18 +8,23 @@
 
 <header class="header" id='activity_sign_up_page'>
     报名
-    <button class="btn btn-primary header-left"  ng-click='back_to_activity_list()'>Back</button>
-    <button class="btn btn-primary header-right" >Start</button>
+    <div class="header-left">
+    <button class="side-slide-trigger btn-style btn-4" ng-click='back_to_activity_list()'>{{Back}}</button>
+        </div>
+    <div class="header-right">
+    <button class="btn-style btn-4" >{{Start}}</button>
+         </div>
 </header>
 
-<div class="wrapper">
 
 
-    <button >报名</button>
-    <button >竞价</button>
+<footer>
+    <ul class="footer-nav footer-nav-2tabs">
+        <li ><button >报名</button></li>
+        <li><button >竞价</button></li>
+    </ul>
+</footer>
 
-
-</div>
 
 </body>
 </html>
