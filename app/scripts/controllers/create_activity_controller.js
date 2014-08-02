@@ -8,7 +8,7 @@ angular.module('testApp')
        $scope.back_to_activity_list=function(){$location.path('/activity_list')};
        $scope.go_activity_sign_up=function(){
           
-       if(localStorage != null) {
+       if(localStorage.getItem('activities') != null) {
            var activities = JSON.parse(localStorage.getItem('activities'));
            activities.unshift($scope.activity_name);
            console.log(activities);

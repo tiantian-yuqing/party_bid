@@ -3,7 +3,7 @@
 angular.module('testApp')
     .controller('activityListCtrl', function ($scope, $location) {
 
-        if (localStorage == null){
+        if (localStorage.getItem('activities') == null){
             $location.path('/create_activity')
         }
 
