@@ -5,13 +5,24 @@ angular.module('testApp')
 
        $scope.back = "返回";
        $scope.create_activity = "创建";
-       $scope.go_activity_sign_up=function(){$location.path('/activity_sign_up')};
-
        $scope.back_to_activity_list=function(){$location.path('/activity_list')};
+       $scope.go_activity_sign_up=function(){
+          
+       if(localStorage != null) {
+           var activities = JSON.parse(localStorage.getItem('activities'));
+           activities.unshift($scope.activity_name);
+           console.log(activities);
+            }
 
-       localStorage.setItem('activity_name',JSON.stringify($scope.activity_name));
+       else{
+           var activities = [];
+           activities.unshift($scope.activity_name);
+          }
 
+       localStorage.setItem('activities',JSON.stringify(activities));
 
+          $location.path('/activity_sign_up')
+       };
 
 
  });

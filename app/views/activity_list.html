@@ -11,7 +11,10 @@
     <div class="header-right">
     <button class="btn-style btn-4"  ng-click='go_create_activity()'>{{create_activity}}</button>
         </div>
-    <li ng-repeat="activity in activities "><p>{{activity.name}}</p> </li>
+
+<ul>
+    <li ng-repeat="activity_name in activities "> <p>{{activity_name}}</p> </li>
+</ul>
 
 
 </header>

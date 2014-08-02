@@ -2,13 +2,15 @@
 
 angular.module('testApp')
     .controller('activityListCtrl', function ($scope, $location) {
-        
-     
+
+        if (localStorage == null){
+            $location.path('/create_activity')
+        }
+
        $scope.create_activity='创建活动';
        $scope.go_create_activity=function(){$location.path('/create_activity')};
 
-        $scope.activity_name = JSON.parse(localStorage.getItem($scope.activity_name));
-
+       $scope.activities = JSON.parse(localStorage.getItem('activities'));
 
 
  });

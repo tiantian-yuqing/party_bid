@@ -35,20 +35,19 @@ angular
         .config(function ($routeProvider) {
             $routeProvider
                 .when('/', {
-                    templateUrl: 'views/create_activity.html',
-                    controller: 'createActivityCtrl'
+                    templateUrl: 'views/activity_list.html',
+                    controller: 'activityListCtrl'
                 })
 
                 .when('/activity_sign_up', {
                     templateUrl: 'views/activity_sign_up.html',
                     controller: 'activitySignUpCtrl'
                 })
-                .when('/activity_list', {
-                    templateUrl: 'views/activity_list.html',
-                    controller: 'activityListCtrl'
+                .when('/create_activity', {
+                    templateUrl: 'views/create_activity.html',
+                    controller: 'createActivityCtrl'
                 })
                 .otherwise({
                     redirectTo: '/'
                 });
         });
-
