@@ -5,6 +5,7 @@ angular.module('testApp')
 
        $scope.back = "返回";
        $scope.create_activity = "创建";
+       $scope.show = localStorage.getItem('activities') !=null;
        $scope.back_to_activity_list=function(){$location.path('/activity_list')};
        $scope.go_activity_sign_up=function(){
           
