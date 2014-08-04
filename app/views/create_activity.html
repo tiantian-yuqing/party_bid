@@ -2,32 +2,27 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>创建活动</title>
+    <title></title>
 </head>
+
 <body>
-
-
 <header >
     创建活动
     <div class="header-left">
-         <button  class="btn-style btn-4"   ng-click='back_to_activity_list()'
-                  ng-show="{{ show }} ">{{back}}</button>
+         <button  class="btn-style btn-4"   ng-click='back_to_activity_list()' ng-show="show">{{back}}</button>
     </div>
 </header>
-
 
 <div class="wrapper "  align="center">
     <h4>活动名称：</h4>
     <input  ng-model="activity_name"  class="input-full"  type='text'/>
 
-    <p style="color: red"  ng-show="{{ warning }}"></p>
+    <h4 style="color: red"  ng-show="warning">活动名称重复</h4>
+
     <p>
-        <button class="btn btn-2 "  ng-click="go_activity_sign_up()"  ng-disabled = !activity_name >{{create_activity}}</button>
+       <button class="btn btn-2"  ng-click="go_activity_sign_up()"  ng-disabled = !activity_name >{{create_activity}}</button>
     </p>
-
-
 </div>
-
 </body>
 </html>
 
