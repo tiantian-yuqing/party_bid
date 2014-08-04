@@ -20,7 +20,7 @@
     <h4>活动名称：</h4>
     <input  ng-model="activity_name"  class="input-full"  type='text'/>
 
-
+    <p style="color: red"  ng-show="{{ warning }}"></p>
     <p>
         <button class="btn btn-2 "  ng-click="go_activity_sign_up()"  ng-disabled = !activity_name >{{create_activity}}</button>
     </p>
