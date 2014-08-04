@@ -13,7 +13,10 @@ angular.module('testApp')
             for (var i=0 ; i < (JSON.parse(localStorage.getItem('activities')).length) ; i++)
             {
                 var activities =JSON.parse(localStorage.getItem('activities'));
-                return ($scope.activity_name == activities[i])
+                if($scope.activity_name == activities[i]){
+                    return true ;
+                }
+             
             }
 
         }
