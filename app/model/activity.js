@@ -18,3 +18,8 @@ Activity.get_all_activities = function () {
     return activities_data
 };
 
+//判断localstorage存储的activity是否为空
+Activity.judge_activity_empty = function (){
+   return (localStorage.getItem('activities') == null)
+   };
+
