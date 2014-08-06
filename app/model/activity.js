@@ -13,13 +13,12 @@ Activity.get_activity_name = function () {
     return localStorage.getItem('activity_name');
 };
 
-//返回活动列表
-Activity.get_all_activities = function () {
-    return activities_data
-};
-
 //判断localstorage存储的activity是否为空
 Activity.judge_activity_empty = function (){
    return (localStorage.getItem('activities') == null)
    };
 
+//取出存储在localstorage中的activities
+Activity.get_all_activities=function(){
+    return JSON.parse(localStorage.getItem('activities'))
+};
