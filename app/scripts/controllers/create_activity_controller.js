@@ -10,13 +10,13 @@ angular.module('testApp')
         $scope.back_to_activity_list = function () {$location.path('/activity_list')};
         $scope.go_activity_sign_up = function ()
         {
-            var activities =Activity.get_all_activities()||[];
+            var activities = Activity.get_all_activities_json||[];
 
-            if (localStorage.getItem('activities') == null)
+            if (Activity.judge_activity_empty())
             {
-                activities.unshift($scope.activity_name);
+                Activity.unshift($scope.activity_name);
 
-                localStorage.setItem('activities', JSON.stringify(activities));
+                Activity.localStorage_activity();
 
                 $location.path('/activity_sign_up')
 
@@ -27,13 +27,13 @@ angular.module('testApp')
                    if(Activity.judge_duplicate($scope.activity_name))
                    {
                        $scope.warning = true ;
-                       
+
                    }
 
                    else {
-                       activities.unshift($scope.activity_name);
+                       Activity.unshift($scope.activity_name);
 
-                       localStorage.setItem('activities', JSON.stringify(activities));
+                       Activity.localStorage_activity();
 
                        $location.path('/activity_sign_up')
                    }
