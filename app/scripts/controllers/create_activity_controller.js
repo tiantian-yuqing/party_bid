@@ -16,11 +16,10 @@ angular.module('testApp')
                 if($scope.activity_name == activities[i]){
                     return true ;
                 }
-             
+
             }
 
         }
-
 
         $scope.go_activity_sign_up = function ()
         {
