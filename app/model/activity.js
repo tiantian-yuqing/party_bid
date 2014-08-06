@@ -22,3 +22,15 @@ Activity.judge_activity_empty = function (){
 Activity.get_all_activities=function(){
     return JSON.parse(localStorage.getItem('activities'))
 };
+//判断重复
+Activity.judge_duplicate=function(activity_name){
+    for (var i=0 ; i < (Activity.get_all_activities().length) ; i++)
+    {
+        var activities =Activity.get_all_activities();
+        if(activity_name == activities[i]){
+            return true ;
+        }
+
+    }
+
+};

@@ -8,22 +8,9 @@ angular.module('testApp')
         $scope.create_activity = "创建";
         $scope.show = (localStorage.getItem('activities') != null);
         $scope.back_to_activity_list = function () {$location.path('/activity_list')};
-        function   judge_duplicate()
-        {
-            for (var i=0 ; i < (JSON.parse(localStorage.getItem('activities')).length) ; i++)
-            {
-                var activities =JSON.parse(localStorage.getItem('activities'));
-                if($scope.activity_name == activities[i]){
-                    return true ;
-                }
-
-            }
-
-        }
-
         $scope.go_activity_sign_up = function ()
         {
-            var activities =JSON.parse(localStorage.getItem('activities'))||[];
+            var activities =Activity.get_all_activities()||[];
 
             if (localStorage.getItem('activities') == null)
             {
@@ -37,10 +24,10 @@ angular.module('testApp')
 
             else
             {
-                   if(judge_duplicate())
+                   if(Activity.judge_duplicate($scope.activity_name))
                    {
                        $scope.warning = true ;
-                       console.log('m');
+                       
                    }
 
                    else {
