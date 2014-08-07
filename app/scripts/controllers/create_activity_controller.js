@@ -11,33 +11,13 @@ angular.module('testApp')
         $scope.go_activity_sign_up = function () {
             var activity1 = new Activity($scope.activity_name);
             var activities_arr = Activity.get_all_activities_json() || [];
-            alert(activities_arr.length);
             if (Activity.judge_duplicate($scope.activity_name,activities_arr)) {
                 $scope.warning = true;
             }
             else {
                 Activity.localStorage_activity1(activities_arr, activity1);
-                $location.path('/activity_sign_up')
-            }
-
-        }
-    })
-
-        /*
-            if ( Activity.judge_activities_arr_empty() ){
-                 Activity.localStorage_activity1(activities_arr,activity1);
-                 $location.path('/activity_sign_up')
-            }
-            else{
-                   if(Activity.judge_duplicate($scope.activity_name)){
-                       $scope.warning = true ;
-                   }
-                   else {
-                       Activity.localStorage_activity1(activities_arr,activity1);
-                       $location.path('/activity_sign_up')
-                   }
+                $location.path('/activity_sign_up');
             }
         }
-    })
+    });
 
-*/
