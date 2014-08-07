@@ -3,7 +3,7 @@
 angular.module('testApp')
     .controller('activityListCtrl', function ($scope, $location)
     {
-        if (Activity.judge_activity_empty()){
+        if (Activity.judge_activities_arr_empty ()){
             $location.path('/create_activity')
         }
        $scope.create_activity='创建活动';
