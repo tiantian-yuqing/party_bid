@@ -13,29 +13,28 @@ Activity.get_activity_name = function () {
 Activity.judge_activities_arr_empty = function (){
    return (localStorage.getItem('activities_arr') == null);
 };
-                                                                           //取出存储在localstorage中的activities
-Activity.get_all_activities=function() {
-    return localStorage.getItem('activities_arr')
-};
                                                                           //取出存储在localstorage中的activities 并json
 Activity.get_all_activities_json=function(){
     return JSON.parse(localStorage.getItem('activities_arr'))
 };
                                                                           //判断重复
 Activity.judge_duplicate=function(activity_name){
-    for (var i = 0 ; i < (JSON.parse(localStorage.getItem('activities_arr'))).length ; i++){
+    for (var i = 0 ; i < (Activity.get_all_activities_json()).length ; i++){
         //alert("b");
-        var activities = JSON.parse(localStorage.getItem('activities_arr'));
-        if(activity_name == activities[i].name){
+        var activities_arr = Activity.get_all_activities_json();
+        if(activity_name == activities_arr[i].name){
             return true ;
         }
     }
 };
 
-Activity.localStorage_activity=function(activities_arr){                         //存储数组到localstorage
+Activity.localStorage_activity1=function(activities_arr,activity1){                         //存储数组到localstorage
+    activities_arr.unshift(activity1);
     localStorage.setItem('activities_arr', JSON.stringify(activities_arr));
 };
 
 //Activity.put_activity_to_localstorage=function(){
 
 //}
+//activities_arr.unshift(activity1);
+//Activity.localStorage_activity(activities_arr);

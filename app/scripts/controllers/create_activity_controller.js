@@ -11,8 +11,7 @@ angular.module('testApp')
             var activity1 = new Activity($scope.activity_name);
             var activities_arr = Activity.get_all_activities_json()||[];
             if ( Activity.judge_activities_arr_empty() ){
-                 activities_arr.unshift(activity1);
-                 Activity.localStorage_activity(activities_arr);
+                 Activity.localStorage_activity1(activities_arr,activity1);
                  $location.path('/activity_sign_up')
             }
             else{
@@ -20,8 +19,7 @@ angular.module('testApp')
                        $scope.warning = true ;
                    }
                    else {
-                       activities_arr.unshift(activity1);
-                       Activity.localStorage_activity(activities_arr);
+                       Activity.localStorage_activity1(activities_arr,activity1);
                        $location.path('/activity_sign_up')
                    }
             }

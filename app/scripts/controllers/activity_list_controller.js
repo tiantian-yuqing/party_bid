@@ -8,6 +8,6 @@ angular.module('testApp')
         }
        $scope.create_activity='创建活动';
        $scope.go_create_activity=function(){$location.path('/create_activity')};
-       $scope.activities = JSON.parse(localStorage.getItem('activities'));
+       $scope.activities = Activity.get_all_activities_json();
        $scope.go_activity_sign_up = function (){$location.path('/activity_sign_up')}
     });
