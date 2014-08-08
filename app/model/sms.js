@@ -14,12 +14,23 @@ var native_accessor = {
     },
 
     process_received_message: function (json_message) {
-               // if (!Message.check_apply_status() && Message.check_apply_detail_status()) {
-                  // native_accessor.send_sms(json_message.messages[0].phone,'活动尚未开始，请稍候。');
-                    //console.log('活动尚未开始，请稍候。');
-                   // return;
-
-             }
+        // if (!Message.check_apply_status() && Message.check_apply_detail_status()) {
+        // native_accessor.send_sms(json_message.messages[0].phone,'活动尚未开始，请稍候。');
+        //console.log('活动尚未开始，请稍候。');
+        // return;
+        if (Message.message_is_valuble(message, name, phone, people_list_arr)) {
+            if (count == "zero") {
+                native_accessor.send_sms(json_message.messages[0].phone, '活动尚未开始，请稍候。');
+            }
+            if (count == "odd") {
+                native_accessor.send_sms(json_message.messages[0].phone, '恭喜，报名成功');
+                return true;
+            }
+            if (count == "even") {
+                native_accessor.send_sms(json_message.messages[0].phone, 'sorry,报名已结束');
+            }
+        }
+    }
         //console.log('aaaaaaaaaaaaaaa');
     };
 

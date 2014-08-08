@@ -79,9 +79,11 @@ Message.bm_to_BM = function(message){
   return(message.toUpperCase);
 };
 
-Message.message_is_valuble = function(message,name,phone) {
+Message.message_is_valuble = function(message,name,phone, people_list_arr) {
     if (Message.bm_to_BM(Message.extract_bm(message)) == "BM") {
-       if(!Activity.judge_name_duplicate(name, people_list_arr)){return true}
+       if(!Activity.judge_name_duplicate(name, people_list_arr)){
+           return true
+       }
        else {
            return(!Activity.judge_phone_duplicate(phone, people_list_arr));
        }
