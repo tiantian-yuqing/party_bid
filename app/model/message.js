@@ -79,18 +79,18 @@ Message.bm_to_BM = function(message){
   return(message.toUpperCase);
 };
 
-Message.BM_is_valuble = function(message) {
+Message.message_is_valuble = function(message,name,phone) {
     if (Message.bm_to_BM(Message.extract_bm(message)) == "BM") {
-        //Message.extract_name(message);
-        //localStorage.setItem('activities_arr', JSON.stringify(Message.extract_name(message)));
-       if( !Activity.judge_name_duplicate()){
+       if(!Activity.judge_name_duplicate(name, people_list_arr)){return true}
+       else {
+           return(!Activity.judge_phone_duplicate(phone, people_list_arr));
        }
     }
+};
 
-}
 Activity.judge_phone_duplicate=function(phone, people_list_arr) {             //判断重复
     for (var i = 0 ; i < (people_list_arr.length) ; i++){
-        return (nphone == people_list_arr[i].name);
+        return (phone == people_list_arr[i].name);
     }
 };
 

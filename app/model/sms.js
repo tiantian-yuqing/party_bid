@@ -18,6 +18,7 @@ var native_accessor = {
                   // native_accessor.send_sms(json_message.messages[0].phone,'活动尚未开始，请稍候。');
                     //console.log('活动尚未开始，请稍候。');
                    // return;
+
              }
         //console.log('aaaaaaaaaaaaaaa');
     };
