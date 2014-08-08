@@ -8,7 +8,28 @@ angular.module('testApp')
          $scope.back_to_activity_list=function(){$location.path('/activity_list')};
          $scope.click_number=function(){
              count++; alert(count);
+            alert(Message.judge_count(count));
          }
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     });
 
 
