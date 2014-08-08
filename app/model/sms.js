@@ -15,7 +15,7 @@ var native_accessor = {
 
     process_received_message: function (json_message) {
                // if (!Message.check_apply_status() && Message.check_apply_detail_status()) {
-                 //   native_accessor.send_sms(json_message.messages[0].phone,'活动尚未开始，请稍候。');
+                  // native_accessor.send_sms(json_message.messages[0].phone,'活动尚未开始，请稍候。');
                     //console.log('活动尚未开始，请稍候。');
                    // return;
              }

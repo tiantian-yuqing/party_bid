@@ -9,10 +9,18 @@ angular.module('testApp')
                $location.path('/activity_list')
         };
         $scope.click_start_button = function () {
-            count++;
+            count++;alert(count);
             $scope.Start = Message.button(count);
+            //alert(count);
+            count = Message.ddd(count);
+            //alert(count);
         }
     });
+
+var person = Message(Message.extract_name,json_message.messages[0].phone);
+var people_list_arr = Message.get_all_people_json () || [];
+
+
 
 
 
