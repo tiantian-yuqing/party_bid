@@ -19,10 +19,6 @@ var native_accessor = {
                 native_accessor.send_sms(json_message.messages[0].phone, '恭喜，报名成功');
                 Message.localStorage_json_message_name_phone(json_message.messages[0]);
                 location.reload(true);
-                // var scope = angular.element('#register').scope();  //报名成功后刷新报名页面信息列表
-                //scope.$apply(function () {
-                   // scope.refresh_sign_up_info();
-                //});
             }
             if (count == "even") {
                 native_accessor.send_sms(json_message.messages[0].phone, 'sorry,报名已结束');
@@ -36,4 +32,3 @@ function notify_message_received(message_json) {
 }
 
 
-;

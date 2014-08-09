@@ -8,7 +8,6 @@ function Message(name,phone){
 
 Message.click_start = function(){                                     //点击开始按钮
     return("结束");
-
 };
 
 Message.click_end = function(){                                       //点击结束按钮
@@ -84,27 +83,9 @@ Message.judge_phone_duplicate = function(BM_message) {                    //判�
     return (! (i == people_list_arr.length) );
 };
 
-Message.judge_name_duplicate = function(message) {                      //判断名字重复
-    var people_list_arr = Message.get_all_people_json()|| [];
-    for (var i = 0 ; i < ( people_list_arr.length ) ; i++){
-        if(Message.extract_name(message) == people_list_arr[i].name){
-            break;
-        }
-    }
-    //alert  (! (i == people_list_arr.length ));
-    return (! (i == people_list_arr.length ));
-};
-
 Message.message_is_valuable = function(BM_message) {                       //判断报名信息是否有效
     if (Message.bm_to_BM(Message.extract_bm(BM_message.message)) == "BM") { //alert("u");
-        if(!Message.judge_name_duplicate(BM_message.message)){        //alert("u")
-           //alert(!Message.judge_name_duplicate(message));
-           return true
-       }
-       else { //alert("u") ;
-           //alert(!Message.judge_phone_duplicate(message));//alert("uu")
-           return(!Message.judge_phone_duplicate(BM_message));
-       }
+        return (!Message.judge_phone_duplicate(BM_message));
     }
 };
 
