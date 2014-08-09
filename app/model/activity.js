@@ -6,17 +6,20 @@ Activity.judge_activities_arr_empty = function (){                          //�
    return (Activity.get_all_activities_json() == null);
 };
 
-Activity.get_all_activities_json=function(){                                //取出存储在localstorage中的activities 并json
+Activity.get_all_activities_json = function(){                                //取出存储在localstorage中的activities 并json
     return JSON.parse(localStorage.getItem('activities_arr'))
 };
 
-Activity.judge_duplicate=function(activity_name,activities_arr){             //判断重复
-    for (var i = 0 ; i < (activities_arr.length) ; i++){
-        return (activity_name == activities_arr[i].name);
+Activity.judge_duplicate = function(activity_name,activities_arr){           //判断重复
+    for (var i = 0 ; i < (activities_arr.length) ; i++) {
+        if (activity_name == activities_arr[i].name) {
+            break;
+        }
     }
+    return (!i ==activities_arr.length );
 };
 
-Activity.localStorage_activity1=function(activities_arr,activity1){          //存储实例到localstorage
+Activity.localStorage_activity1 = function(activities_arr,activity1){          //存储实例到localstorage
     activities_arr.unshift(activity1);
     localStorage.setItem('activities_arr', JSON.stringify(activities_arr));
 };
