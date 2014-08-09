@@ -5,22 +5,24 @@ var native_accessor = {
         //native_access.send_sms({"receivers":[{"name":'name', "phone":phone}]}, {"message_content":message});
         console.log(phone, message);
         //console.log('flag');
+       // alert("hhh");
     },
-
-    receive_message: function (json_message) {
+    receive_message: function (message_json) {
         if (typeof this.process_received_message === 'function') {
-            this.process_received_message(json_message);
+            this.process_received_message(message_json);
         }
     },
-
-    process_received_message: function (json_message) {
+    process_received_message: function (json_message,person) {
         // if (!Message.check_apply_status() && Message.check_apply_detail_status()) {
         // native_accessor.send_sms(json_message.messages[0].phone,'活动尚未开始，请稍候。');
         //console.log('活动尚未开始，请稍候。');
         // return;
-        if (Message.message_is_valuble(message, name, phone, people_list_arr)) {
+        var people_list_arr = Message.get_all_people_json();
+        if (Message.message_is_valuable(json_message, person, people_list_arr)) {
+            var count = Message.get_count();
             if (count == "zero") {
-                native_accessor.send_sms(json_message.messages[0].phone, '活动尚未开始，请稍候。');
+                native_accessor.send_sms(json_message.messages[0].phone, '活动尚未开始，请稍候');
+                return false;
             }
             if (count == "odd") {
                 native_accessor.send_sms(json_message.messages[0].phone, '恭喜，报名成功');
@@ -28,11 +30,11 @@ var native_accessor = {
             }
             if (count == "even") {
                 native_accessor.send_sms(json_message.messages[0].phone, 'sorry,报名已结束');
+                return false;
             }
         }
     }
-        //console.log('aaaaaaaaaaaaaaa');
-    };
+};
 
 function notify_message_received(message_json) {
     //console.log(JSON.stringify(message_json));
@@ -42,3 +44,5 @@ function notify_message_received(message_json) {
     native_accessor.receive_message(message_json);
     //phone_number=message_json.messages[0].phone;
 }
+
+

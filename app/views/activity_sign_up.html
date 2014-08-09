@@ -9,6 +9,16 @@
     </div>
 </header>
 
+<ul class="list-style-1" style="margin-top: 30px">
+    <li ng-repeat="person in person_list_arr " >
+        <tr>
+            <th> {{person.name}}</th>
+            <td> {{person.phone}}</td>
+        </tr>
+    </li>
+</ul>
+
+
 <footer>
     <ul class="footer-nav footer-nav-2tabs "  align="center">
         <li ><button >报名</button></li>
