@@ -10,6 +10,7 @@ angular.module('testApp')
         };
         $scope.go_activity_sign_up = function () {
             var activity1 = new Activity($scope.activity_name);
+             //alert(activity1.state);
             var activities_arr = Activity.get_all_activities_json() || [];
             if (Activity.judge_duplicate($scope.activity_name,activities_arr)) {
                 $scope.warning = true;

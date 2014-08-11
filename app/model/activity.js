@@ -1,6 +1,9 @@
 function Activity( activity_name) {
     this.name = activity_name;
+    this.state = 0 ;
+    //this.people_list_arr = [];
 }
+//Activity.prototype.state = 0 ;
 
 Activity.judge_activities_arr_empty = function (){                          //判断localstorage存储的activity是否为空
    return (Activity.get_all_activities_json() == null);
@@ -24,3 +27,12 @@ Activity.localStorage_activity1 = function(activities_arr,activity1){          /
     localStorage.setItem('activities_arr', JSON.stringify(activities_arr));
 };
 
+Activity.find_activity_position = function(){
+   var activities_arr= JSON.parse(localStorage.getItem('activities_arr'));
+   var activity =  JSON.parse(localStorage.getItem('activity'));
+    for (var i = 0 ; i < (activities_arr.length) ; i++) {
+        if(activities_arr[i].name == activity.name ){
+            return i ;
+        }
+    }
+};

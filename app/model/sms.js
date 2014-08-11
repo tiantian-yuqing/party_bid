@@ -12,7 +12,7 @@ var native_accessor = {
     process_received_message: function (json_message) {
         if (Message.message_is_valuable (json_message.messages[0])) {
             var count = Message.judge_count();
-            if (count == "zero") {
+            if (count == "zero") {                                       //switch
                 native_accessor.send_sms(json_message.messages[0].phone, '活动尚未开始，请稍候');
             }
             if (count == "odd") {
@@ -20,7 +20,7 @@ var native_accessor = {
                 Message.localStorage_json_message_name_phone(json_message.messages[0]);
                 location.reload(true);
             }
-            if (count == "even") {
+            if (count == "even") { alert("g");
                 native_accessor.send_sms(json_message.messages[0].phone, 'sorry,报名已结束');
             }
         }

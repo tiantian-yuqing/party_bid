@@ -6,21 +6,23 @@ function Message(name,phone){
     this.phone = phone;
 }
 
-Message.click_start = function(){                                     //点击开始按钮
+Message.click_start = function(activity){                              //点击开始按钮
     return("结束");
+   // activity.state = 1;
+
 };
 
-Message.click_end = function(){                                       //点击结束按钮
+Message.click_end = function(){                                         //点击结束按钮
     return(confirm("是否结束本次报名?"));
 };
 
-Message.judge_count = function() {      //alert("a");                 //判断点击次数的奇偶数
+Message.judge_count = function() {        //alert("a");                 //判断点击次数的奇偶数
     var count = Message.get_count()|| 0;
     return((count == 0)? "zero" :(count % 2 == 0) ? "even" : "odd");
 };
 
 Message.start_or_end = function (){                                    //开始按钮的显示
-    var count = Message.get_count()|| 0;
+    var count = Message.get_count()||0;//alert(count)
     var zero_odd_even = Message.judge_count();
     if (zero_odd_even == "zero"){
           return( "开始");
@@ -28,17 +30,18 @@ Message.start_or_end = function (){                                    //开始�
     if (zero_odd_even == "odd") {
           return( "结束");
     }
-    if (zero_odd_even == "even") {
+    if (zero_odd_even == "even" ) {
           return(Message.count_is_even (count));
     }
 };
+
 
 Message.count_is_even = function (count){                             //点击次数是偶数时怎么处理
     if (Message.click_end()) {
         return( "开始");
     }
     else {
-        count--;
+        count=1;
         Message.localStorage_count(count);
         return( "结束");
     }
@@ -73,13 +76,12 @@ Message.bm_to_BM = function(message){           //alert("u");            //把�
 };
 
 Message.judge_phone_duplicate = function(BM_message) {                    //判断电话重复
-    var people_list_arr = Message.get_all_people_json();
+    var people_list_arr = Message.get_all_people_json()||[];
     for (var i = 0 ; i < (people_list_arr.length) ; i++){
         if (BM_message.phone == people_list_arr[i].phone){
             break;
         }
     }
-    //alert  (! (i == people_list_arr.length) );
     return (! (i == people_list_arr.length) );
 };
 
@@ -94,8 +96,10 @@ Message.get_all_people_json = function(){   // alert("kk")                  //�
 };
 
 Message.localStorage_person = function (people_list_arr,person){             //把实例存进localstorage
-    people_list_arr.unshift(person);
-    localStorage.setItem('people_list_arr', JSON.stringify(people_list_arr));
+    if(person !=  people_list_arr[0]) {
+        people_list_arr.unshift(person);
+        localStorage.setItem('people_list_arr', JSON.stringify(people_list_arr));
+    }
 };
 
 Message.localStorage_json_message_name_phone = function(json_message) {  //alert("b");     //把发过来的信息的名字和电话号码存进localstorage
