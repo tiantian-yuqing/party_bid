@@ -10,8 +10,9 @@ var native_accessor = {
         }
     },
     process_received_message: function (json_message) {
-            //alert(activity == "");
-            if (activity == "" ||activity.state == 0) {
+        var recent = JSON.parse(localStorage.getItem('recent'));
+        var activity = Activity.find_by_name(recent);
+            if (activity.state == 0) {
                 native_accessor.send_sms(json_message.messages[0].phone, '活动尚未开始，请稍候');
             }
 
@@ -26,7 +27,6 @@ var native_accessor = {
                 native_accessor.send_sms(json_message.messages[0].phone, 'sorry，报名结束');
             }
         }
-
 };
 
 

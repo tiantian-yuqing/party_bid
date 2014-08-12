@@ -5,28 +5,27 @@ function Activity( activity_name) {
 }
 
 Activity.judge_activities_arr_empty = function (){                          //判断localstorage存储的activity是否为空
-   return (Activity.get_all_activities_json() == null);
+   var activities = JSON.parse(localStorage.getItem('activities_arr'));
+   return (activities == null);
 };
 
-Activity.get_all_activities_json = function(){                                //取出存储在localstorage中的activities 并json
-    return JSON.parse(localStorage.getItem('activities_arr'))
-};
-
-Activity.judge_duplicate = function(activity_name,activities_arr){           //判断重复
+Activity.judge_duplicate = function(activity_name){                          //判断活动名称重复
+    var activities_arr = JSON.parse(localStorage.getItem('activities_arr')) || [];
     for (var i = 0 ; i < (activities_arr.length) ; i++) {
         if (activity_name == activities_arr[i].name) {
             break;
         }
     }
-    return (!i ==activities_arr.length );
+    return (! (i ==activities_arr.length) );
 };
 
-Activity.localStorage_activity1 = function(activities_arr,activity1){          //存储实例到localstorage
+Activity.localStorage_activity1 = function(activity1){                         //存储实例到localstorage
+    var activities_arr = JSON.parse(localStorage.getItem('activities_arr')) || [];
     activities_arr.unshift(activity1);
     localStorage.setItem('activities_arr', JSON.stringify(activities_arr));
 };
 
-Activity.find_by_name = function (name) {
+Activity.find_by_name = function (name) {                                       //找到当前活动
   var activities = JSON.parse(localStorage.getItem('activities_arr'));
     for(var i = 0; i<activities.length; i++){
         if(name == activities[i].name){
@@ -35,7 +34,7 @@ Activity.find_by_name = function (name) {
     }
 };
 
-Activity.update_state = function (activity){
+Activity.update_state = function (activity){                                        //更新状态
     var activities = JSON.parse(localStorage.getItem('activities_arr'));
     for(var i = 0; i<activities.length; i++){
         if(activity.name == activities[i].name){
@@ -44,9 +43,20 @@ Activity.update_state = function (activity){
     }
     localStorage.setItem('activity', JSON.stringify(activity));
     localStorage.setItem('activities_arr', JSON.stringify(activities));
+    localStorage.setItem('recent', JSON.stringify(activity.name));
 };
 
-Activity.on_going = function () {
+Activity.update_people_list  = function (activity){                                    //更新人员列表
+    var activities = JSON.parse(localStorage.getItem('activities_arr'));
+    for(var i = 0; i<activities.length; i++){
+        if(activity.name == activities[i].name){
+            activities[i].people_list_arr = activity.people_list_arr;
+        }
+    }
+    localStorage.setItem('activities_arr', JSON.stringify(activities));
+};
+
+Activity.on_going = function () {                                                     //判断是否有别的活动在进行
     var activities = JSON.parse(localStorage.getItem('activities_arr'));
     for(var i = 0; i<activities.length; i++){
         if(activities[i].state == 1){
@@ -54,16 +64,5 @@ Activity.on_going = function () {
         }
     }
     return false;
-}
-
-//Activity.find_activity_position = function(){                                  //获取点击的活动在数组中的位置
-//    if( activity == null){
-//        return 0 ;
-//    }
-//    for (var i = 0 ; i < (activities_arr.length) ; i++) {
-//        if(activities_arr[i].name == activity.name ){//alert("i");
-//            return i ;
-//        }
-//    }
-//};
+};
 

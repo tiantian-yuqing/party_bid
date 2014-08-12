@@ -11,7 +11,6 @@
 angular.module('testApp')
   .filter('switch', function () {
     return function (input) {
-      console.log(input);
       return input == 1? '结束': '开始';
     };
   });
