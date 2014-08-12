@@ -20,10 +20,22 @@ Message.judge_phone_duplicate = function(BM_message) {                    //判�
     var people_list_arr = activity. people_list_arr;
     for (var i = 0 ; i < (people_list_arr.length) ; i++){
         if (BM_message.phone == people_list_arr[i].phone){
-            break;
+            return true
         }
     }
-    return (! (i == people_list_arr.length) );
+    return false
+};
+
+Message.judge_phone_number = function(){
+    var json_message_phone = JSON.parse(localStorage.getItem('json_message.phone'));
+    var recent = JSON.parse(localStorage.getItem('recent'));
+    var activity = Activity.find_by_name(recent);
+    for(var i = 0 ;i < activity.people_list_arr.length ; i++){
+        if(json_message_phone == activity.people_list_arr[i].phone){
+            return true
+        }
+    }
+    return false
 };
 
 Message.message_is_valuable = function(BM_message) {                       //判断报名信息是否有效
@@ -45,16 +57,6 @@ Message.get_json_message_phone = function(){                             //取�
     return (JSON.parse(localStorage.getItem('json_message.phone')));
 };
 
-Message.judge_phone_number = function(){
-     var json_message_phone = JSON.parse(localStorage.getItem('json_message.phone'));
-     var recent = JSON.parse(localStorage.getItem('recent'));
-     var activity = Activity.find_by_name(recent);
-     for(var i = 0 ;i <  activity.people_list_arr.length ; i++){
-        if(json_message_phone == activity.people_list_arr[i].phone){
-            return true
-        }
-     }
-     return false
-};
+
 
 
