@@ -9,6 +9,13 @@ angular.module('testApp')
        $scope.create_activity='创建活动';
        $scope.go_create_activity=function(){$location.path('/create_activity')};
        $scope.activities = Activity.get_all_activities_json();
+
+       $scope.change_color = function(activity){
+            if( activity.state == 1 ){   //alert(activity.name);
+                return "activity-color";
+            }
+       };
+
        $scope.go_activity_sign_up = function (activity){
            $location.path('/activity_sign_up');
            localStorage.setItem('activity', JSON.stringify(activity));

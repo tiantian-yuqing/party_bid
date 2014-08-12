@@ -742,8 +742,10 @@ footer {
     -webkit-text-fill-color: transparent;
 }
 
+.activity-color{
+    background-color: #ffff00 !important;
 
-
+}
 
 
 
