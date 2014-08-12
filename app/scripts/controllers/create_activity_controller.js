@@ -16,7 +16,7 @@ angular.module('testApp')
             }
             else {
                 Activity.localStorage_activity1(activities_arr, activity1);
-                $location.path('/activity_sign_up');
+                $location.path('/activity_sign_up/' + $scope.activity_name);
             }
         }
     });

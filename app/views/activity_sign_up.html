@@ -1,11 +1,11 @@
 
 <header class="header" id='activity_sign_up_page'>
-    报名({{number}})人
+    报名({{activity | number}})人
     <div class="header-left">
        <button class="side-slide-trigger btn-style btn-4" ng-click='back_to_activity_list()'>{{Back}}</button>
     </div>
     <div class="header-right">
-       <button class="btn-style btn-4" ng-click="click_start_button()"  ng-disabled="show_start_button()" >{{Start}}</button>
+       <button class="btn-style btn-4" ng-click="click_start_button()"  ng-disabled="show_start_button()" >{{activity.state | switch}}</button>
     </div>
 </header>
 
