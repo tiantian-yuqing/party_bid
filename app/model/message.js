@@ -30,12 +30,17 @@ Message.judge_phone_number = function(){
     var json_message_phone = JSON.parse(localStorage.getItem('json_message.phone'));
     var recent = JSON.parse(localStorage.getItem('recent'));
     var activity = Activity.find_by_name(recent);
-    for(var i = 0 ;i < activity.people_list_arr.length ; i++){
-        if(json_message_phone == activity.people_list_arr[i].phone){
-            return true
+    if(json_message_phone != null) {
+        for (var i = 0; i < activity.people_list_arr.length; i++) {
+            if (json_message_phone == activity.people_list_arr[i].phone) {
+                return true
+            }
         }
+        return false
     }
-    return false
+    else{
+        return true
+    }
 };
 
 Message.message_is_valuable = function(BM_message) {                       //判断报名信息是否有效

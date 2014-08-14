@@ -2,15 +2,18 @@
 <header class="header" id='activity_sign_up_page'>
     报名({{activity | number}})人
     <div class="header-left">
-       <button class="side-slide-trigger btn-style btn-4" ng-click='back_to_activity_list()'>返回</button>
+       <button class="side-slide-trigger my-btn-style btn-4" ng-click='back_to_activity_list()'>返回</button>
     </div>
     <div class="header-right">
-       <button class="btn-style btn-4" ng-click="click_start_button()"  ng-disabled="{{show_start_button}}" >{{activity.state | switch}}</button>
+       <button class="my-btn-style btn-4" ng-click="click_start_button()"  ng-disabled="{{show_start_button}}" >{{activity.state | switch}}</button>
     </div>
 </header>
 
-<ul class="list-style-1" style="margin-top: 30px">
-    <li ng-repeat=" person in people_list_arr ">{{person.name}} {{person.phone}} </li>
+<ul class="list-style-1">
+    <li ng-repeat=" person in people_list_arr ">
+       <span> {{person.name}}</span>
+       <span class="position1">{{person.phone}}</span>
+    </li>
 </ul>
 
 <footer>

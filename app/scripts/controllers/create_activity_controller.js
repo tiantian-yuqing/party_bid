@@ -13,7 +13,9 @@ angular.module('testApp')
             }
             else {
                 Activity.localStorage_activity1(activity1);
-                localStorage.setItem('recent', JSON.stringify(activity1.name));
+                Activity.judge_localStorage_recent(activity1);
+
+                //localStorage.setItem('recent', JSON.stringify(activity1.name));
                 $location.path('/activity_sign_up/' + $scope.activity_name);
             }
         }

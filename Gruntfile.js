@@ -29,6 +29,11 @@ module.exports = function (grunt) {
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
+        jade: {
+            files: ['<%= yeoman.app %>/{,*/}*.jade'],
+            tasks: ['jade']
+        },
+        //很多其他指令
       bower: {
         files: ['bower.json'],
         tasks: ['wiredep']
@@ -187,7 +192,7 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: '<%= yeoman.app %>/index.html',
+        html: '.tmp/index.html',     //修改这儿
       options: {
         dest: '<%= yeoman.dist %>',
         flow: {
@@ -314,6 +319,11 @@ module.exports = function (grunt) {
             'images/{,*/}*.{webp}',
             'fonts/*'
           ]
+        },{
+            expand: true,          //修改这儿
+            cwd: '.tmp',
+            dest: '<%= yeoman.dist %>',
+            src: ['{,*/}*.html']
         }, {
           expand: true,
           cwd: '.tmp/images',
@@ -349,6 +359,22 @@ module.exports = function (grunt) {
       ]
     },
 
+      jade: {     //在这里添加
+          compile: {
+              options: {
+                  client: false,
+                  pretty: true
+              },
+              files: [{
+                  cwd: "<%= yeoman.app %>",
+                  src: "{,*/}*.jade",
+                  dest: ".tmp",
+                  expand: true,
+                  ext: ".html"
+              }]
+          }
+      },
+
     // Test settings
     karma: {
       unit: {
@@ -367,6 +393,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
+        'jade',//在这里添加
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
@@ -390,6 +417,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
+      'jade',//在这里添加
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',

@@ -332,7 +332,6 @@ footer {
     text-align: center;
     text-decoration: none;
     font-weight: normal;
-    background-color:royalblue;
 }
 
 .btn-style:hover {
@@ -509,7 +508,10 @@ footer {
     margin-bottom: 20px;
     border-radius: 4px;
     box-shadow: 0px 1px 5px -1px rgba(0,0,0, .4);
+    margin-top: 30px
 }
+
+
 
 .list-style-1 li {
     font-size: 18px;
@@ -747,7 +749,8 @@ footer {
 
 }
 
-
-
-
+.position1{
+    position:absolute;
+    right:10px;
+}
 

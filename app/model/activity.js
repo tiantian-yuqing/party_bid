@@ -66,3 +66,12 @@ Activity.on_going = function () {                                               
     return false;
 };
 
+Activity.judge_localStorage_recent = function(activity1){
+    var activities = JSON.parse(localStorage.getItem('activities_arr'));
+    for(var i = 0; i<activities.length; i++){
+        if(activities[i].state == 1){
+            return
+        }
+    }
+    localStorage.setItem('recent', JSON.stringify(activity1.name));
+};

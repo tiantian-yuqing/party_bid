@@ -1,0 +1,13 @@
+button[disabled] {
+  background-color: darkgray;
+}
+
+.my-btn-style {
+    display: inline-block;
+    position: relative;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: normal;
+    background-color:royalblue;
+}

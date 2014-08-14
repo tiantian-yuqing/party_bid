@@ -26,7 +26,6 @@ angular.module('testApp')
             }
             Activity.update_state($scope.activity);
         };
-
     });
 
 
