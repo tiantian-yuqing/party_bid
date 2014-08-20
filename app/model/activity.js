@@ -11,12 +11,7 @@ Activity.judge_activities_arr_empty = function (){                          //�
 
 Activity.judge_duplicate = function(activity_name){                          //判断活动名称重复
     var activities_arr = JSON.parse(localStorage.getItem('activities_arr')) || [];
-    for (var i = 0 ; i < (activities_arr.length) ; i++) {
-        if (activity_name == activities_arr[i].name) {
-            break;
-        }
-    }
-    return (! (i ==activities_arr.length) );
+    return ( activities_arr.where({name:activity_name}) != null );
 };
 
 Activity.localStorage_activity1 = function(activity1){                         //存储实例到localstorage
@@ -26,21 +21,15 @@ Activity.localStorage_activity1 = function(activity1){                         /
 };
 
 Activity.find_by_name = function (name) {                                       //找到当前活动
-  var activities = JSON.parse(localStorage.getItem('activities_arr'));
-    for(var i = 0; i<activities.length; i++){
-        if(name == activities[i].name){
-            return activities[i];
-        }
-    }
+    var activities = JSON.parse(localStorage.getItem('activities_arr'));
+    return _(activities).findWhere({name:name});
 };
+
 
 Activity.update_state = function (activity){                                        //更新状态
     var activities = JSON.parse(localStorage.getItem('activities_arr'));
-    for(var i = 0; i<activities.length; i++){
-        if(activity.name == activities[i].name){
-            activities[i].state = activity.state;
-        }
-    }
+    _(activities).findWhere({name:activity.name}).state = activity.state;
+
     localStorage.setItem('activity', JSON.stringify(activity));
     localStorage.setItem('activities_arr', JSON.stringify(activities));
     localStorage.setItem('recent', JSON.stringify(activity.name));
@@ -48,30 +37,18 @@ Activity.update_state = function (activity){                                    
 
 Activity.update_people_list  = function (activity){                                    //更新人员列表
     var activities = JSON.parse(localStorage.getItem('activities_arr'));
-    for(var i = 0; i<activities.length; i++){
-        if(activity.name == activities[i].name){
-            activities[i].people_list_arr = activity.people_list_arr;
-        }
-    }
+    _(activities).findWhere({name:activity.name}).people_list_arr = activity.people_list_arr;
     localStorage.setItem('activities_arr', JSON.stringify(activities));
 };
 
 Activity.on_going = function () {                                                     //判断是否有别的活动在进行
     var activities = JSON.parse(localStorage.getItem('activities_arr'));
-    for(var i = 0; i<activities.length; i++){
-        if(activities[i].state == 1){
-            return true;
-        }
-    }
-    return false;
+    return ( _(activities).where({state:1}) != null );
 };
 
-Activity.judge_localStorage_recent = function(activity1){
+Activity.judge_localStorage_recent = function(activity1) {
     var activities = JSON.parse(localStorage.getItem('activities_arr'));
-    for(var i = 0; i<activities.length; i++){
-        if(activities[i].state == 1){
-            return
-        }
-    }
+    if (_(activities).where({state: 1}) == null) {
     localStorage.setItem('recent', JSON.stringify(activity1.name));
+    }
 };
