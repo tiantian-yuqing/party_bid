@@ -1,14 +1,11 @@
-header 创建活动
-    div.header-left
-        button.my-btn-style btn-4(ng-click='back_to_activity_list()',ng-show="show").
-            返回
-
-div#wrapper(class="wrapper-inner",align="center")
-    div.wrapper-inner
-    h4 活动名称：
-    input.input-full(ng-model="activity_name", style="height: 30px",type='text')
-    h4(style="color: red",ng-show="warning").
-        活动名称重复
-    p
-        button.btn  btn-2( ng-click="go_activity_sign_up()",ng-disabled = !activity_name ).
-            创建
+header
+  | 创建活动
+  .header-left
+    button.my-btn-style.btn-4(ng-click='back_to_activity_list()', ng-show='show') 返回
+#wrapper .wrapper-inner(align='center')
+  .wrapper-inner
+  h4 活动名称：
+  input.input-full(ng-model='activity_name', style='height: 30px', type='text')
+  h4(style='color: red', ng-show='warning') 活动名称重复
+  p
+    button.btn.btn-2(ng-click='go_activity_sign_up()', ng-disabled='!activity_name') 创建
