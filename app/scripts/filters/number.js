@@ -11,6 +11,6 @@
 angular.module('testApp')
   .filter('number', function () {
     return function (input) {
-      return input.people_list_arr.length;
+      return input.length;
     };
   });

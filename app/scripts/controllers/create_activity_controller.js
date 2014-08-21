@@ -2,20 +2,39 @@
 
 angular.module('testApp')
     .controller('createActivityCtrl', function ($scope, $location) {
-        $scope.show = !Activity.judge_activities_arr_empty();
-        $scope.back_to_activity_list = function () {
-               $location.path('/activity_list')
+        var activity_obeject = JSON.parse(localStorage.getItem(activity_obeject))||[];
+
+        $scope.back_to_activity_list = function (){
+            $location.path('/activity_list');
         };
-        $scope.go_activity_sign_up = function () {
-            var activity1 = new Activity($scope.activity_name);
-            if (Activity.judge_duplicate($scope.activity_name)) {
-                $scope.warning = true;
-            }
-            else {
-                Activity.localStorage_activity1(activity1);
-                Activity.judge_localStorage_recent(activity1);
-                $location.path('/activity_sign_up/' + $scope.activity_name);
-            }
+
+        $scope.show_back_button = function(){
+            return activity_obeject != "" ;
+        };
+
+        $scope.go_activity_sign_up = function(){
+            $location.path('/activity_sign_up/' + $scope.activity_name);
+        };
+
+        if(_(activity_obeject).where({activity_name:$scope.activity_name}) == ""){
+           activity_obeject[$scope.activity_name] = new Activity() ;
         }
+        else{
+            $scope.warning = true ;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     });
 
