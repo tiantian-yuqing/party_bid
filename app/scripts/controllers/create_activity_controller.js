@@ -67,7 +67,7 @@ angular.module('testApp')
             if(_(activity_object).where({state:1}) == ""){
                 localStorage.setItem('recent', JSON.stringify(activity_object[$scope.activity_name].name));
             }
-            console.log(activity_object);
+           // console.log(activity_object);
 
          };
 

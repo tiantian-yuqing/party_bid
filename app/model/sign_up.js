@@ -3,12 +3,12 @@ function SignUP(name,phone){
     this.phone = phone;
 }
 
-SignUP.message_is_valuable = function(BM_message) {                       //判断报名信息是否有效
+SignUP.message_is_valuable = function(BM_message) {                     //判断报名信息是否有效
     var message_BM = BM_message.message.replace(/[ ]/g," ").slice(0,2).toUpperCase();
     var recent = JSON.parse(localStorage.getItem('recent'));
     var activity_object = JSON.parse(localStorage.getItem('activity_object'));
-    var phone_duplicate =_(activity_object[recent].sign_up).where({phone:BM_message.phone });
-    return  message_BM == "BM" && !phone_duplicate
+    var phone_duplicate =( _(activity_object[recent].sign_up).where({phone:BM_message.phone}) != "" );
+    return ( message_BM == "BM" && !phone_duplicate )
 };
 
 SignUP.localStorage_json_message_name_phone = function(json_message) {    //把发过来的信息的名字和电话号码存进localstorage

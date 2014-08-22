@@ -12,22 +12,24 @@ var native_accessor = {
     },
     process_received_message: function (json_message) {
         var recent = JSON.parse(localStorage.getItem('recent'));
-        var activity = Activity.find_by_name(recent);
+        var activity_object = JSON.parse( localStorage.getItem('activity_object')) || {};
+        var activity = _(activity_object).findWhere({name:recent});
             if (activity.state == 0) {
                 native_accessor.send_sms(json_message.messages[0].phone, '活动尚未开始，请稍候');
             }
 
             if (activity.state == 1) {
-                if (Message.message_is_valuable(json_message.messages[0])) {
-                native_accessor.send_sms(json_message.messages[0].phone, '恭喜，报名成功');
-                Message.localStorage_json_message_name_phone(json_message.messages[0]);
-                location.reload(true);
+                if (SignUP.message_is_valuable(json_message.messages[0])) {
+                     native_accessor.send_sms(json_message.messages[0].phone, '恭喜，报名成功');
+                     SignUP.localStorage_json_message_name_phone(json_message.messages[0]);
+                     location.reload(true);
+                }
             }
-        }
+
             if (activity.state == 2) {
                 native_accessor.send_sms(json_message.messages[0].phone, 'sorry，报名结束');
             }
-        }
+    }
 };
 
 
