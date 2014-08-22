@@ -34,7 +34,7 @@ angular.module('testApp')
                 return "activity-color";
             }
         };
-        
+
         $scope.bids_list = _.pluck(_(activity_object).findWhere({name:$routeParams.name}).bids,'bid_name');
         $scope.go_price_activity = function(bid){
             $location.path('/'+recent+'/price_activity/'+ bid);           // $location.path('/activity_sign_up/' + activity_name);
