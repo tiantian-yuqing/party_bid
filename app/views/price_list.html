@@ -1,0 +1,22 @@
+
+<header class="header" id='price_list'>
+    竞价
+    <div class="header-left">
+        <button class="side-slide-trigger my-btn-style btn-4" ng-click='back_to_activity_list()'>返回</button>
+    </div>
+    <div class="header-right">
+        <button class="my-btn-style btn-4" ng-click="click_start_button()"  ng-disabled="{{disabled_start_button}}" >开始</button>
+    </div>
+</header>
+
+<ul class="list-style-1">
+    <li ng-repeat=" bid in bids_list ">{{bid}} </li>
+</ul>
+
+<footer>
+    <ul class="footer-nav footer-nav-2tabs "  align="center">
+        <li ng-click="go_activity_sign_up()"><button >报名</button></li>
+        <li ><button >竞价</button></li>
+    </ul>
+</footer>
+

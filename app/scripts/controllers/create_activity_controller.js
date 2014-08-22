@@ -29,9 +29,17 @@ angular.module('testApp')
 
 
 
-
-
-
+//
+//
+//$scope.click_start_button = function(){
+//    //  $location.path('/price_activity');
+//    activity.bids.unshift({name:1,state:1});
+//    //    activity.bids = [{name:1,state:1}];
+//    localStorage.setItem('activity_object',JSON.stringify( activity_object));
+//    console.log(activity_object);
+//};
+//
+//$scope.bids = _.pluck(activity.bids,'name');
 
 
 

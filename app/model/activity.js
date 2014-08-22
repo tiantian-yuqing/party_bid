@@ -6,3 +6,7 @@ function Activity(name) {
     this.bidding = [] ;
 }
 
+function Bid(i){
+    this.bid_name  = "竞价"+i ;
+    this.bid_state = 1 ;
+}

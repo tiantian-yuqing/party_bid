@@ -5,6 +5,8 @@
 
 angular.module('testApp')
     .controller('priceActivityCtrl', function ($scope, $location){
-
+        $scope.back_to_price_list = function(){
+            $location.path('/price_list');
+        }
 
     });
