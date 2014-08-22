@@ -5,12 +5,12 @@
         <button class="side-slide-trigger my-btn-style btn-4" ng-click='back_to_activity_list()'>返回</button>
     </div>
     <div class="header-right">
-        <button class="my-btn-style btn-4" ng-click="click_start_button()"  ng-disabled="{{disabled_start_button}}" >开始</button>
+        <button class="my-btn-style btn-4" ng-click="click_start_button(bid)"  ng-disabled="{{disabled_start_button}}" >开始</button>
     </div>
 </header>
 
 <ul class="list-style-1">
-    <li ng-repeat=" bid in bids_list ">{{bid}} </li>
+    <li ng-repeat=" bid in bids_list " class="{{change_color(bid)}}" ng-click = "go_price_activity(bid)">{{bid}} </li>
 </ul>
 
 <footer>

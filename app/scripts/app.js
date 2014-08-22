@@ -32,7 +32,7 @@ angular
                     templateUrl: 'views/create_activity.html',
                     controller: 'createActivityCtrl'
                 })
-                .when('/price_activity', {
+                .when('/price_activity/:bid', {
                     templateUrl: 'views/price_activity.html',
                     controller: 'priceActivityCtrl'
                 })

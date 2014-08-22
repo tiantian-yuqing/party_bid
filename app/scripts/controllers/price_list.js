@@ -17,18 +17,27 @@ angular.module('testApp')
             $location.path('/activity_sign_up/' + recent);
         };
 
-        $scope.disabled_start_button =  _(activity.bids).findWhere({state:1}) != undefined ;
+        $scope.disabled_start_button =  _(activity.bids).findWhere({bid_state:1}) != undefined ;
 
         $scope.click_start_button = function(){
-            $location.path('/price_activity');
-            var bid = new Bid(click_number);
-            activity.bids.unshift(bid);
+
+            var biding = new Bid(click_number);
+            activity.bids.unshift(biding);
             click_number++;
             localStorage.setItem('activity_object',JSON.stringify( activity_object));
+            $location.path('/price_activity/'+ biding.bid_name);
         };
 
+        $scope.change_color = function(bid){
+            if( _(activity.bids).findWhere({bid_name:bid}).bid_state == 1){
+                return "activity-color";
+            }
+        };
 
         $scope.bids_list = _.pluck(activity.bids,'bid_name');
-
+        $scope.go_price_activity = function(bid){
+            $location.path('/price_activity/'+ bid );
+           // $location.path('/activity_sign_up/' + activity_name);
+        }
 
     });

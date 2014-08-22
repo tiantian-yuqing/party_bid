@@ -7,6 +7,7 @@ angular.module('testApp')
           $location.path('/create_activity');
       }
 
+
       $scope.go_create_activity = function(){
           $location.path('/create_activity');
       };
@@ -16,11 +17,19 @@ angular.module('testApp')
       };
 
       $scope.change_color = function(activity_name){
-        if( activity_object[activity_name].state == 1){
+        if( activity_object[activity_name].state == 1 || _(activity_object[activity_name].bids).findWhere({bid_state:1})!= undefined ){
            return "activity-color";
         }
       };
 
       $scope.activity_list = _.keys(activity_object) ;
+
+      for(var value in activity_object){
+         if( _(activity_object[value].bids).findWhere({bid_state:1}) != undefined ){
+           $scope.disabled_create_activity_button = true ;
+         }
+      }
+
+
 
     });
