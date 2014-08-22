@@ -17,8 +17,12 @@ angular.module('testApp')
             if( $scope.activity.state != 1 || confirm("是否确认结束报名")){
                 $scope.activity.state = $scope.activity.state == 1 ? 2 : 1;
             }
+            if($scope.activity.state == 2){
+                $location.path('/price_list') ;
+            }
             localStorage.setItem('activity_object',JSON.stringify( activity_object));
             localStorage.setItem('recent',JSON.stringify($routeParams.name));
+
         };
 
         if($scope.activity.state == 1 && (_($scope.activity.sign_up).findWhere({phone:sign_up_person.phone}) == undefined)) {

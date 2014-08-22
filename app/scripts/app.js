@@ -32,6 +32,14 @@ angular
                     templateUrl: 'views/create_activity.html',
                     controller: 'createActivityCtrl'
                 })
+                .when('/price_activity', {
+                    templateUrl: 'views/price_activity.html',
+                    controller: 'priceActivityCtrl'
+                })
+                .when('/price_list', {
+                    templateUrl: 'views/price_list.html',
+                    controller: 'priceListCtrl'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
