@@ -29,6 +29,7 @@ angular.module('testApp')
             $scope.activity.sign_up.unshift(sign_up_person);
             localStorage.setItem('activity_object',JSON.stringify( activity_object));
         }
+
     });
 
 
