@@ -25,7 +25,8 @@ angular.module('testApp')
                 $scope.activity.state = $scope.activity.state == 1 ? 2 : 1;
             }
             if($scope.activity.state == 2){
-                $location.path('/price_list') ;
+                $location.path( '/'+$routeParams.name + '/price_list') ;
+               // $location.path('/activity_sign_up/' + activity_name);
             }
             localStorage.setItem('activity_object',JSON.stringify( activity_object));
             localStorage.setItem('recent',JSON.stringify($routeParams.name));
@@ -39,7 +40,7 @@ angular.module('testApp')
         }
 
         $scope.go_price_list = function(){
-            $location.path('/price_list');
+            $location.path( '/'+$routeParams.name + '/price_list') ;
         }
 
     });

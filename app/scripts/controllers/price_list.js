@@ -2,9 +2,10 @@
  * Created by tiantian on 14-8-21.
  */
 'use strict';
-var click_number = 1;
+
 angular.module('testApp')
-    .controller('priceListCtrl', function ($scope, $location){
+    .controller('priceListCtrl', function ($scope, $location,$routeParams){
+
         var recent = JSON.parse(localStorage.getItem('recent'));
         var activity_object = JSON.parse( localStorage.getItem('activity_object')) || {};
         var activity = _(activity_object).findWhere({name:recent});
@@ -21,11 +22,11 @@ angular.module('testApp')
 
         $scope.click_start_button = function(){
 
-            var biding = new Bid(click_number);
+            var biding = new Bid(activity.jjnumber);
             activity.bids.unshift(biding);
-            click_number++;
+            activity.jjnumber++;
             localStorage.setItem('activity_object',JSON.stringify( activity_object));
-            $location.path('/price_activity/'+ biding.bid_name);
+            $location.path('/'+recent+'/price_activity/'+ biding.bid_name);
         };
 
         $scope.change_color = function(bid){
@@ -33,11 +34,10 @@ angular.module('testApp')
                 return "activity-color";
             }
         };
-
-        $scope.bids_list = _.pluck(activity.bids,'bid_name');
+        
+        $scope.bids_list = _.pluck(_(activity_object).findWhere({name:$routeParams.name}).bids,'bid_name');
         $scope.go_price_activity = function(bid){
-            $location.path('/price_activity/'+ bid );
-           // $location.path('/activity_sign_up/' + activity_name);
+            $location.path('/'+recent+'/price_activity/'+ bid);           // $location.path('/activity_sign_up/' + activity_name);
         }
 
     });

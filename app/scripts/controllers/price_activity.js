@@ -10,7 +10,8 @@ angular.module('testApp')
         var activity = _(activity_object).findWhere({name:recent});
 
         $scope.back_to_price_list = function(){
-            $location.path('/price_list');
+         //   $location.path('/price_list');
+            $location.path( '/'+recent + '/price_list') ;
         };
 
         $scope.disabled_end_button =  _(activity.bids).findWhere({bid_name:$routeParams.bid}).bid_state == 2;

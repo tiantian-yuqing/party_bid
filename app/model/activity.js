@@ -4,6 +4,7 @@ function Activity(name) {
     this.sign_up = [];
     this.bids = [];
     this.bidding = [] ;
+    this.jjnumber = 1 ;
 }
 
 function Bid(i){
