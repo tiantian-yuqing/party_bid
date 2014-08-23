@@ -1,6 +1,6 @@
 
 <header class="header">
-    竞价()人
+    {{jjnumber}}({{ jj_list | number}}人)
     <div class="header-left">
         <button class="side-slide-trigger my-btn-style btn-4" ng-click='back_to_price_list()'>返回</button>
     </div>
@@ -9,10 +9,10 @@
     </div>
 </header>
 
-<ul class="list-style-1">
-    <li ng-repeat=" jj_person in jj_list ">
-        <span> {{jj_person.name}}</span>
-        <span class="position1">{{jj_person.phone}}</span>
+<ul class="list-style-1" >
+    <li ng-repeat=" jj_person in jj_list " class="my-post-body">
+        {{position(jj_person)}}
+        {{jj_person.name}}<p>{{jj_person.phone}}</p>
     </li>
 </ul>
 

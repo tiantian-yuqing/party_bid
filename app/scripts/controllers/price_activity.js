@@ -5,10 +5,15 @@
 
 angular.module('testApp')
     .controller('priceActivityCtrl', function ($scope, $location,$routeParams){
-        console.log($routeParams);
+      //  console.log($routeParams);
+
         var recent = JSON.parse(localStorage.getItem('recent'));
         var activity_object = JSON.parse( localStorage.getItem('activity_object')) || {};
         var activity = _(activity_object).findWhere({name:recent});
+        $scope.jjnumber = $routeParams.bid;
+        $scope.position = function(jj_person){
+          return $scope.jj_list.indexOf(jj_person)+1 ;
+        };
 
         $scope.back_to_price_list = function(){
             $location.path( '/'+recent + '/price_list') ;

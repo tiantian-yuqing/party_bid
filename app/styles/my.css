@@ -11,3 +11,11 @@ button[disabled] {
     font-weight: normal;
     background-color:royalblue;
 }
+
+.my-post-body:first-letter {
+    PADDING-RIGHT: 10px;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 2.0em;
+    FLOAT: left;
+    LINE-HEIGHT: 1.1em;
+}

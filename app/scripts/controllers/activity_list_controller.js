@@ -7,7 +7,6 @@ angular.module('testApp')
           $location.path('/create_activity');
       }
 
-
       $scope.go_create_activity = function(){
           $location.path('/create_activity');
       };
@@ -29,7 +28,5 @@ angular.module('testApp')
            $scope.disabled_create_activity_button = true ;
          }
       }
-
-
 
     });
