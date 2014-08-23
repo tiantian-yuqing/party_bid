@@ -5,8 +5,6 @@
 
 angular.module('testApp')
     .controller('priceActivityCtrl', function ($scope, $location,$routeParams){
-      //  console.log($routeParams);
-
         var recent = JSON.parse(localStorage.getItem('recent'));
         var activity_object = JSON.parse( localStorage.getItem('activity_object')) || {};
         var activity = _(activity_object).findWhere({name:recent});
@@ -28,6 +26,10 @@ angular.module('testApp')
                 _(activity.bids).findWhere({bid_name:$routeParams.bid}).bid_state = 2;
 
                 localStorage.setItem('activity_object',JSON.stringify( activity_object));
+                $location.path('/'+recent + '/price_activity/'+$routeParams.bid+'/price_result');
+
             }
         }
+
+
     });

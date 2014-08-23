@@ -1,0 +1,22 @@
+
+<header class="header">
+    {{jjnumber}}({{ jj_list | number}}人)
+    <div class="header-left">
+        <button class="side-slide-trigger my-btn-style btn-4" ng-click='back_to_price_list()'>返回</button>
+    </div>
+    <div class="header-right">
+        <button class="my-btn-style btn-4" ng-click="click_statistics_button()" >统计</button>
+    </div>
+</header>
+
+<ul class="list-style-1" >
+    <li ng-repeat=" jj_person in jj_list |orderBy:orderProp" class="my-post-body">
+        <span class="my-post-body"> {{position(jj_person)}}</span>
+        {{jj_person.name}}
+        <p class="my-post2-body">￥{{jj_person.price}}</p>
+        <p>{{jj_person.phone}}</p>
+    </li>
+</ul>
+
+
+

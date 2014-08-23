@@ -19,3 +19,11 @@ button[disabled] {
     FLOAT: left;
     LINE-HEIGHT: 1.1em;
 }
+
+.my-post2-body {
+    PADDING-RIGHT: 10px;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 2.0em;
+    FLOAT: right;
+    LINE-HEIGHT: 1.1em;
+}

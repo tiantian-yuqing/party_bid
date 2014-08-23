@@ -17,3 +17,8 @@ function JJ(name,phone,price){
     this.phone = phone ;
     this.price = price ;
 }
+
+function PriceList(price,number){
+    this.price = price ;
+    this.number = number ;
+}

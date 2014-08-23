@@ -7,6 +7,10 @@ angular.module('testApp')
             $location.path('/activity_list');
         };
 
+        $scope.display_back_button = function(){
+            return !_(activity_object).isEmpty() ;
+        };
+
         $scope.go_activity_sign_up = function(){
             if( _(activity_object).where({name:$scope.activity_name})!="" ){
                 $scope.warning = true ;

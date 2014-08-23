@@ -5,7 +5,6 @@
 
 angular.module('testApp')
     .controller('priceListCtrl', function ($scope, $location,$routeParams){
-
         var recent = JSON.parse(localStorage.getItem('recent'));
         var activity_object = JSON.parse( localStorage.getItem('activity_object')) || {};
         var activity = _(activity_object).findWhere({name:recent});
@@ -15,7 +14,6 @@ angular.module('testApp')
         };
 
         $scope.go_activity_sign_up = function(){
-           // $location.path('/activity_sign_up/' + $routeParams.name);
             $location.path('/'+$routeParams.name+'/activity_sign_up');
         };
 

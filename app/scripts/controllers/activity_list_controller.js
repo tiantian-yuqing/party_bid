@@ -13,7 +13,6 @@ angular.module('testApp')
 
       $scope.go_activity_sign_up = function(activity_name){
           $location.path('/'+activity_name+'/activity_sign_up');
-         // $location.path( $routeParams.name + '/price_list') ;
       };
 
       $scope.change_color = function(activity_name){
