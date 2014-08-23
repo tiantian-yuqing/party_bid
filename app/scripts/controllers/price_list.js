@@ -21,7 +21,6 @@ angular.module('testApp')
         $scope.disabled_start_button =  _(activity.bids).findWhere({bid_state:1}) != undefined ;
 
         $scope.click_start_button = function(){
-
             var biding = new Bid(activity.jjnumber);
             activity.bids.unshift(biding);
             activity.jjnumber++;

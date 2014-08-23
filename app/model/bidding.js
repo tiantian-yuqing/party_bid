@@ -8,10 +8,11 @@ function Bidding(name,phone){
 
 Bidding.message_is_valuable = function(JJ_message) {                     //判断报名信息是否有效
     var message_JJ = JJ_message.message.replace(/[ ]/g," ").slice(0,2).toUpperCase();
-    var recent = JSON.parse(localStorage.getItem('recent'));
-    var activity_object = JSON.parse(localStorage.getItem('activity_object'));
-    var phone_duplicate =( _(activity_object[recent].bidding).where({phone:JJ_message.phone}) != "" );
-    return ( message_JJ == "JJ" && !phone_duplicate )
+    return ( message_JJ == "JJ" )
+};
+
+Bidding.exact_price = function(JJ_message){
+    return JJ_message.message.replace(/[ ]/g," ").slice(2,8);
 };
 
 Bidding.localStorage_json_message_name_phone = function(json_message) {    //把发过来的信息的名字和电话号码存进localstorage
