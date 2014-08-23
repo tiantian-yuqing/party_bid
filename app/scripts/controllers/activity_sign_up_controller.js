@@ -3,7 +3,6 @@
 angular.module('testApp')
     .controller('activitySignUpCtrl', function ($scope, $location, $routeParams) {
         var activity_object = JSON.parse( localStorage.getItem('activity_object')) || {};
-
         var sign_up_person = new SignUP(SignUP.get_json_message_name(), SignUP.get_json_message_phone());
 
         $scope.back_to_activity_list = function () {
@@ -26,7 +25,6 @@ angular.module('testApp')
             }
             if($scope.activity.state == 2){
                 $location.path( '/'+$routeParams.name + '/price_list') ;
-               // $location.path('/activity_sign_up/' + activity_name);
             }
             localStorage.setItem('activity_object',JSON.stringify( activity_object));
             localStorage.setItem('recent',JSON.stringify($routeParams.name));

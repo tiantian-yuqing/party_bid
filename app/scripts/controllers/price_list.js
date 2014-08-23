@@ -15,7 +15,8 @@ angular.module('testApp')
         };
 
         $scope.go_activity_sign_up = function(){
-            $location.path('/activity_sign_up/' + recent);
+           // $location.path('/activity_sign_up/' + $routeParams.name);
+            $location.path('/'+$routeParams.name+'/activity_sign_up');
         };
 
         $scope.disabled_start_button =  _(activity.bids).findWhere({bid_state:1}) != undefined ;
@@ -36,7 +37,7 @@ angular.module('testApp')
 
         $scope.bids_list = _.pluck(_(activity_object).findWhere({name:$routeParams.name}).bids,'bid_name');
         $scope.go_price_activity = function(bid){
-            $location.path('/'+recent+'/price_activity/'+ bid);           // $location.path('/activity_sign_up/' + activity_name);
+            $location.path('/'+recent+'/price_activity/'+ bid);
         }
 
     });

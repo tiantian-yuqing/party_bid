@@ -7,10 +7,6 @@ angular.module('testApp')
             $location.path('/activity_list');
         };
 
-        $scope.show_back_button = function(){
-            return activity_object != "" ;
-        };
-
         $scope.go_activity_sign_up = function(){
             if( _(activity_object).where({name:$scope.activity_name})!="" ){
                 $scope.warning = true ;
@@ -18,7 +14,7 @@ angular.module('testApp')
             else{
                 activity_object[$scope.activity_name] = new Activity($scope.activity_name);
                 localStorage.setItem('activity_object',JSON.stringify( activity_object));
-                $location.path('/activity_sign_up/' + $scope.activity_name);
+                $location.path('/'+ $scope.activity_name+'/activity_sign_up');
             }
             if(_(activity_object).where({state:1}) == ""){
                 localStorage.setItem('recent', JSON.stringify(activity_object[$scope.activity_name].name));

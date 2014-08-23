@@ -41,17 +41,14 @@ var native_accessor = {
                         send_message = _(activity.bids).findWhere({bid_state:2}) == undefined? '对不起，竞价尚未开始！':'对不起，竞价已结束！';
                     }
                     else{
-                      for(var value in activity.bids){
-                         console.log(activity.bids);
-                         console.log(value);//0
-                         console.log(activity.bids[value].JJ_list);
-                        if( _(activity.bids[value].JJ_list).findWhere({phone:json_message.messages[0].phone}) == undefined){
+
+                        if( _(_(activity.bids).findWhere({bid_state:1}).JJ_list).findWhere({phone:json_message.messages[0].phone}) == undefined){
                             send_message = '恭喜！您已出价成功' ;
                         }
                         else{
                             send_message ='您已成功出价，请勿重复出价！'
                         }
-                      }
+
                     }
                }
 
