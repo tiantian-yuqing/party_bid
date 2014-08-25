@@ -51,8 +51,8 @@ module.exports = function (grunt) {
       },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css']
-//          ,
-//        tasks: ['newer:copy:styles', 'autoprefixer']
+          ,
+        tasks: ['newer:copy:styles', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -396,7 +396,7 @@ module.exports = function (grunt) {
       'wiredep',
         'jade',//在这里添加
       'concurrent:server',
-//      'autoprefixer',
+      'autoprefixer',
       'connect:livereload',
       'watch'
     ]);
@@ -410,7 +410,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
-//    'autoprefixer',
+    'autoprefixer',
     'connect:test',
     'karma'
   ]);
@@ -421,7 +421,7 @@ module.exports = function (grunt) {
       'jade',//在这里添加
     'useminPrepare',
     'concurrent:dist',
-//    'autoprefixer',
+    'autoprefixer',
     'concat',
     'ngmin',
     'copy:dist',
