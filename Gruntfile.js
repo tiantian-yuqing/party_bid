@@ -50,8 +50,9 @@ module.exports = function (grunt) {
         tasks: ['newer:jshint:test', 'karma']
       },
       styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
+        files: ['<%= yeoman.app %>/styles/{,*/}*.css']
+//          ,
+//        tasks: ['newer:copy:styles', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -192,7 +193,7 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-        html: '.tmp/index.html',     //修改这儿
+        html: '<%= yeoman.app %>/index.html',     //修改这儿
       options: {
         dest: '<%= yeoman.dist %>',
         flow: {
@@ -220,27 +221,27 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
+    cssmin: {
+       dist: {
+         files: {
+           '<%= yeoman.dist %>/styles/main.css': [
+             '<%= yeoman.app %>/styles/{,*/}*.css'
+           ]
+         }
+       }
+    },
+    uglify: {
+       dist: {
+         files: {
+           '<%= yeoman.dist %>/scripts/scripts.js': [
+             '<%= yeoman.dist %>/scripts/scripts.js'
+           ]
+         }
+       }
+    },
+    concat: {
+       dist: {}
+    },
 
     imagemin: {
       dist: {
@@ -395,7 +396,7 @@ module.exports = function (grunt) {
       'wiredep',
         'jade',//在这里添加
       'concurrent:server',
-      'autoprefixer',
+//      'autoprefixer',
       'connect:livereload',
       'watch'
     ]);
@@ -409,7 +410,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
-    'autoprefixer',
+//    'autoprefixer',
     'connect:test',
     'karma'
   ]);
@@ -420,7 +421,7 @@ module.exports = function (grunt) {
       'jade',//在这里添加
     'useminPrepare',
     'concurrent:dist',
-    'autoprefixer',
+//    'autoprefixer',
     'concat',
     'ngmin',
     'copy:dist',

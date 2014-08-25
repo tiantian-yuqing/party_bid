@@ -23,7 +23,8 @@ angular.module('testApp')
 
         };
         $scope.orderProp = 'price';
-
+        var t =  setTimeout("alert('5 seconds!')");
+        setTimeout("clearTimeout(t)",2000);
     });
 
 

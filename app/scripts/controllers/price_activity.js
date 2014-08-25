@@ -26,7 +26,7 @@ angular.module('testApp')
                 _(activity.bids).findWhere({bid_name:$routeParams.bid}).bid_state = 2;
 
                 localStorage.setItem('activity_object',JSON.stringify( activity_object));
-                $location.path('/'+recent + '/price_activity/'+$routeParams.bid+'/price_result');
+               // $location.path('/'+recent + '/price_activity/'+$routeParams.bid+'/price_result');
 
             }
         }

@@ -17,7 +17,7 @@ angular.module('testApp')
             $location.path('/'+$routeParams.name+'/activity_sign_up');
         };
 
-        $scope.disabled_start_button =  _(activity.bids).findWhere({bid_state:1}) != undefined ;
+        $scope.disabled_start_button =  _(activity.bids).findWhere({bid_state:1}) != undefined || _(activity_object).findWhere({state:1})!= undefined ;
 
         $scope.click_start_button = function(){
             var biding = new Bid(activity.jjnumber);
