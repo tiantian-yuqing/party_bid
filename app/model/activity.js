@@ -22,3 +22,4 @@ function PriceList(price,number){
     this.price = price ;
     this.number = number ;
 }
+

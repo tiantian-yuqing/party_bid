@@ -30,5 +30,16 @@ Bidding.get_json_message_phone = function(){                             //ÂèñÂá
 };
 
 
+Bidding.judge_disable = function(){
+    var activity_object = JSON.parse( localStorage.getItem('activity_object')) || {};
+    for(var value in activity_object){
+        if(( _(activity_object[value].bids).findWhere({bid_state:1}) != undefined )){
+            return true
+        }
+    }
+};
 
+Bidding.get_activity_object = function(){
+    return  JSON.parse( localStorage.getItem('activity_object')) || {};
+};
 

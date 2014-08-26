@@ -21,7 +21,7 @@ angular.module('testApp')
         }
       };
 
-      $scope.activity_list = _.keys(activity_object) ;
+      $scope.activity_list = _.keys(activity_object).reverse() ;
 
       for(var value in activity_object){
          if( _(activity_object[value].bids).findWhere({bid_state:1}) != undefined ){
