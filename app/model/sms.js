@@ -23,9 +23,11 @@ var native_accessor = {
 
             if (activity.state == 1) {
                 if (SignUP.message_is_valuable(json_message.messages[0])) {
-                     send_message ='恭喜，报名成功'
-                     SignUP.localStorage_json_message_name_phone(json_message.messages[0]);
-                     location.reload(true);
+                     send_message = '恭喜，报名成功' ;
+                    var sign_up_person = new SignUP(SignUP.get_json_message_name(json_message.messages[0]),json_message.messages[0].phone);
+                        activity.sign_up.unshift(sign_up_person);
+                        localStorage.setItem('activity_object',JSON.stringify( activity_object));
+                        location.reload(true);
                 }
             }
 

@@ -16,12 +16,16 @@ angular.module('testApp')
       };
 
       $scope.change_color = function(activity_name){
-        if( activity_object[activity_name].state == 1 || _(activity_object[activity_name].bids).findWhere({bid_state:1})!= undefined ){
-           return "activity-color";
+        //if( activity_object[activity_name].state == 1 || _(activity_object[activity_name].bids).findWhere({bid_state:1})!= undefined ){
+          if(_(activity_object).findWhere({name:activity_name}).state == 1 || _(_(activity_object).findWhere({name:activity_name}).bids).findWhere({bid_state:1})!= undefined ){
+              return "activity-color";
         }
       };
+//console.log(_.keys(activity_object));(
+//        console.log( Activity.get_object_length(activity_object));
+//      console.log(_(activity_object).pluck('name'));
 
-      $scope.activity_list = _.keys(activity_object).reverse() ;
+      $scope.activity_list = _(activity_object).pluck('name').reverse() ;
 
       for(var value in activity_object){
          if( _(activity_object[value].bids).findWhere({bid_state:1}) != undefined ){

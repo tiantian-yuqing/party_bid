@@ -16,12 +16,14 @@ angular.module('testApp')
                 $scope.warning = true ;
             }
             else{
-                activity_object[$scope.activity_name] = new Activity($scope.activity_name);
+
+
+                activity_object[Activity.get_object_length(activity_object)] = new Activity($scope.activity_name);
                 localStorage.setItem('activity_object',JSON.stringify( activity_object));
                 $location.path('/'+ $scope.activity_name+'/activity_sign_up');
             }
             if(_(activity_object).where({state:1}) == ""){
-                localStorage.setItem('recent', JSON.stringify(activity_object[$scope.activity_name].name));
+                localStorage.setItem('recent', JSON.stringify(Activity.get_object_length(activity_object)));
             } ///contains
         };
 

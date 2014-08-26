@@ -18,7 +18,8 @@ angular.module('testApp')
             $location.path( '/'+ $routeParams.name + '/price_list') ;
         };
 
-        $scope.jj_list = _(activity_object[$routeParams.name].bids).findWhere({bid_name:$routeParams.bid}).JJ_list;
+        //$scope.jj_list = _(activity_object[$routeParams.name].bids).findWhere({bid_name:$routeParams.bid}).JJ_list;
+        $scope.jj_list = _(_(activity_object).findWhere({name:$routeParams.name}).bids).findWhere({bid_name:$routeParams.bid}).JJ_list;
 
         $scope.disabled_end_button =  _(activity.bids).findWhere({bid_name:$routeParams.bid}).bid_state == 2;
 
