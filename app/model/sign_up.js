@@ -26,7 +26,7 @@ SignUP.message_is_valuable = function(BM_message) {                     //判断
 //};
 
 
-//SignUP.get_json_message_name = function(json_message){
-//    return json_message.message.replace(/[ ]/g," ").slice(2,8);
-//};
+SignUP.get_json_message_name = function(json_message){
+    return json_message.message.replace(/[ ]/g," ").slice(2,8);
+};
 

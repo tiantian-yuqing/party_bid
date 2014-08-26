@@ -17,6 +17,7 @@ var native_accessor = {
         var send_message = "";
 
         if( json_message.messages[0].message.replace(/[ ]/g," ").slice(0,2).toUpperCase() == "BM"){
+
             if (activity.state == 0) {
                 send_message =  '活动尚未开始，请稍候'
             }
@@ -25,7 +26,7 @@ var native_accessor = {
                 if (SignUP.message_is_valuable(json_message.messages[0])) {
                      send_message = '恭喜，报名成功' ;
                     var sign_up_person = new SignUP(SignUP.get_json_message_name(json_message.messages[0]),json_message.messages[0].phone);
-                        activity.sign_up.unshift(sign_up_person);
+                        activity.sign_up.unshift(sign_up_person);console.log("qq")
                         localStorage.setItem('activity_object',JSON.stringify( activity_object));
                         location.reload(true);
                 }
