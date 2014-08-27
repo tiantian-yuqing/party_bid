@@ -13,22 +13,24 @@ var native_accessor = {
     process_received_message: function (json_message) {
         var recent = JSON.parse(localStorage.getItem('recent'));
         var activity_object = JSON.parse( localStorage.getItem('activity_object')) || {};
-        var activity = _(activity_object).findWhere({name:recent});
+        var activity =  _(activity_object).findWhere({name:recent});
+        console.log(activity);
         var send_message = "";
-
         if( json_message.messages[0].message.replace(/[ ]/g," ").slice(0,2).toUpperCase() == "BM"){
-
             if (activity.state == 0) {
                 send_message =  '活动尚未开始，请稍候'
             }
-
             if (activity.state == 1) {
                 if (SignUP.message_is_valuable(json_message.messages[0])) {
                      send_message = '恭喜，报名成功' ;
                     var sign_up_person = new SignUP(SignUP.get_json_message_name(json_message.messages[0]),json_message.messages[0].phone);
-                        activity.sign_up.unshift(sign_up_person);console.log("qq")
+                        activity.sign_up.unshift(sign_up_person);
                         localStorage.setItem('activity_object',JSON.stringify( activity_object));
-                        location.reload(true);
+                       // location.reload(true);
+                    var scope = angular.element('#register').scope();  //报名成功后刷新报名页面信息列表
+                    scope.$apply(function () {
+                        scope.refresh_sign_up_info();
+                    });
                 }
             }
 

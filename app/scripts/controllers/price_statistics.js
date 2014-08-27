@@ -3,13 +3,14 @@
  */
 angular.module('testApp')
     .controller('priceStatisticsCtrl', function ($scope, $location, $routeParams) {
+        console.log($routeParams);//Object {name: "a", bid: "竞价1"}
+
         var recent = JSON.parse(localStorage.getItem('recent'));
         var activity_object = JSON.parse( localStorage.getItem('activity_object')) || {};
-        var activity = _(activity_object).findWhere({name:recent});
 
         $scope.jjnumber = $routeParams.bid;
 
-        $scope.jj_list = _(activity_object[$routeParams.name].bids).findWhere({bid_name:$routeParams.bid}).JJ_list;
+        $scope.jj_list = _(_(activity_object).findWhere({name:$routeParams.name}).bids).findWhere({bid_name:$routeParams.bid}).JJ_list;
 
         $scope.back_to_price_list = function(){
             $location.path( '/'+recent + '/price_list') ;
@@ -19,13 +20,8 @@ angular.module('testApp')
             $location.path('/'+recent + '/price_activity/'+$routeParams.bid+'/price_result');
         };
 
-        var price_arr =  _.pluck($scope.jj_list, 'price').sort();
-        var price_object = {};
+        $scope.bid_result = _($scope.jj_list).findWhere({price:get_bid_result($scope.jj_list).price});
 
-        for(var value in price_arr){
-            price_object[price_arr[value]] =  price_object[price_arr[value]] || new PriceList(price_arr[value],0);
-            price_object[price_arr[value]].number++;
-        }
-        $scope.price_object = _.values(price_object) ;
+        $scope.price_object = get_price_and_number($scope.jj_list);
 
     });

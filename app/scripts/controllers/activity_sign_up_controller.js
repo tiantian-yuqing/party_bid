@@ -9,13 +9,7 @@ angular.module('testApp')
 
         $scope.activity = _(activity_object).findWhere({name:$routeParams.name});
 
-        $scope.disabled_start_button = (($scope.activity.state !=1) && (_(activity_object).findWhere({state:1}) != undefined));
-
-        for(var value in activity_object){
-            if( _(activity_object[value].bids).findWhere({bid_state:1}) != undefined ){
-                $scope.disabled_start_button = true ;
-            }
-        }
+        $scope.disabled_start_button = ((($scope.activity.state !=1) && (_(activity_object).findWhere({state:1}) != undefined)))|| SignUP.bid_ing() ;
 
         $scope.click_start_button = function(){
             if( $scope.activity.state != 1 || confirm("是否确认结束报名")){
@@ -24,8 +18,8 @@ angular.module('testApp')
             if($scope.activity.state == 2){
                 $location.path( '/'+$routeParams.name + '/price_list') ;
             }
-            localStorage.setItem('activity_object',JSON.stringify( activity_object));
-            localStorage.setItem('recent',JSON.stringify($routeParams.name));
+            SignUP.localstorage_activity_object (activity_object);
+            SignUP.localstorage_recent($routeParams.name);
         };
 
         $scope.go_price_list = function(){

@@ -11,22 +11,24 @@ SignUP.message_is_valuable = function(BM_message) {                     //判断
     return ( message_BM == "BM" && !phone_duplicate )
 };
 
-//SignUP.localStorage_json_message_name_phone = function(json_message) {    //把发过来的信息的名字和电话号码存进localstorage
-//    var message_name = json_message.message.replace(/[ ]/g," ").slice(2,8);
-//    localStorage.setItem('json_message.name',  JSON.stringify(message_name));
-//    localStorage.setItem('json_message.phone', JSON.stringify( (json_message.phone)));
-//};
-
-//SignUP.get_json_message_name = function() {                              //取出存在localstorage里的信息json_message的名字
-//    return (JSON.parse(localStorage.getItem('json_message.name')));
-//};
-//
-//SignUP.get_json_message_phone = function(){                             //取出存在localstorage里的信息json_message的号码
-//    return (JSON.parse(localStorage.getItem('json_message.phone')));
-//};
-
-
 SignUP.get_json_message_name = function(json_message){
     return json_message.message.replace(/[ ]/g," ").slice(2,8);
 };
 
+SignUP.bid_ing = function(){
+  var activity_object = JSON.parse( localStorage.getItem('activity_object')) || {};
+  for(var value in activity_object) {
+      if (_(activity_object[value].bids).findWhere({bid_state: 1}) != undefined ) {
+          return true;
+      }
+  }
+};
+
+SignUP.localstorage_activity_object = function(activity_object){
+
+    localStorage.setItem('activity_object',JSON.stringify( activity_object));
+};
+
+SignUP.localstorage_recent = function(name){
+    localStorage.setItem('recent',JSON.stringify(name));
+};

@@ -10,7 +10,8 @@
 </header>
 
 <ul class="list-style-1" >
-    <li ng-repeat=" jj_person in jj_list |orderBy:orderProp" class="my-post-body">
+    <!--<li ng-repeat=" jj_person in jj_list | orderBy:'price'" class="my-post-body">-->
+    <li ng-repeat=" jj_person in jj_list_sort" class="my-post-body">
         <span class="my-post-body"> {{position(jj_person)}}</span>
         {{jj_person.name}}
         <p class="my-post2-body">￥{{jj_person.price}}</p>
@@ -18,5 +19,16 @@
     </li>
 </ul>
 
-
-
+    <div id="bid_resultsModal" class="modal fade in" >
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">×</a>
+        </div>
+        <div class="modal-body" align="center" >
+            <p>{{bid_result.name}} ￥{{bid_result.price}} </p>
+            <p>{{bid_result.phone}}</p>
+            <p>竞价成功</p>
+        </div>
+    </div>
+<footer>
+    <p  ng-show = "show_footer">竞价结果：{{bid_result.name}}   ￥{{bid_result.price}}   {{bid_result.phone}}</p>
+</footer>

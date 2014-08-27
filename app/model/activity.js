@@ -23,9 +23,9 @@ function PriceList(price,number){
     this.number = number ;
 }
 Activity.get_object_length = function (object) {
-        var count = 0;
-        for (var i in object) {
+     var count = 0;
+     for (var i in object) {
             count++;
-        }
+     }
         return count;
 };
