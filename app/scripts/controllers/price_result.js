@@ -29,7 +29,7 @@ angular.module('testApp')
             return $scope.jj_list_sort.indexOf(jj_person) + 1 ;
         };
 
-        $scope.jj_list_sort = _($scope.jj_list).sortBy('price');
+        $scope.jj_list_sort = ($scope.jj_list).sort(function(a,b) { return a.price - b.price });
 
         $scope.back_to_price_list = function(){
             $location.path( '/'+$routeParams.name + '/price_list') ;

@@ -14,7 +14,7 @@ var native_accessor = {
         var recent = JSON.parse(localStorage['recent']);
         var activity_object = JSON.parse( localStorage['activity_object']) || {};
         console.log('activities:'+activity_object);
-        var activity =  _.find(activity_object,function(activity){return activity.name==recent});
+        var activity =  _.find(activity_object,function(activity){return activity.name == recent});
 
         console.log('state:'+activity);
         var send_message = "";
