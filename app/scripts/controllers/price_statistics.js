@@ -7,6 +7,7 @@ angular.module('testApp')
 
         var recent = JSON.parse(localStorage.getItem('recent'));
         var activity_object = JSON.parse( localStorage.getItem('activity_object')) || {};
+        $scope.show_footer = _(_(activity_object).findWhere({name:$routeParams.name}).bids).findWhere({bid_name:$routeParams.bid}).show_result;
 
         $scope.jjnumber = $routeParams.bid;
 

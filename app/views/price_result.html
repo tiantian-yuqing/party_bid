@@ -1,5 +1,5 @@
 
-<header class="header">
+<header class="header" id="price_result">
     {{jjnumber}}({{ jj_list | number}}人)
     <div class="header-left">
         <button class="side-slide-trigger my-btn-style btn-4" ng-click='back_to_price_list()'>返回</button>
@@ -24,11 +24,11 @@
             <a class="close" data-dismiss="modal">×</a>
         </div>
         <div class="modal-body" align="center" >
-            <p>{{bid_result.name}} ￥{{bid_result.price}} </p>
+            <p>{{bid_result.name}}   ￥{{bid_result.price}} </p>
             <p>{{bid_result.phone}}</p>
             <p>竞价成功</p>
         </div>
     </div>
 <footer>
-    <p  ng-show = "show_footer">竞价结果：{{bid_result.name}}   ￥{{bid_result.price}}   {{bid_result.phone}}</p>
+    <p  ng-show = "show_footer" style="height: 40px">竞价结果：{{bid_result.name}}    ￥{{bid_result.price}}   {{bid_result.phone}}</p>
 </footer>

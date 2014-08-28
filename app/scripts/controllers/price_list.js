@@ -39,6 +39,11 @@ angular.module('testApp')
         $scope.go_price_activity = function(bid){
             $location.path('/'+$routeParams.name+'/price_activity/'+ bid);
 
-        }
+        };
+
+//        $scope.refresh_price_list = function(){
+//            var activity_object = Bidding.get_activity_object();
+//            $scope.bids_list = _.pluck(_(activity_object).findWhere({name:$routeParams.name}).bids,'bid_name');
+//        }
 
     });

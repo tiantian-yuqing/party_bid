@@ -9,6 +9,8 @@ angular.module('testApp')
         var activity_object = Bidding.get_activity_object();
         var activity = _(activity_object).findWhere({name:$routeParams.name});
         $scope.jjnumber = $routeParams.bid;
+        $scope.routeParams = $routeParams ;
+        console.log("SSs:"+$scope.routeParams);
 
         $scope.position = function(jj_person){
                return  $scope.jj_list.indexOf(jj_person) + 1 ;
@@ -25,9 +27,11 @@ angular.module('testApp')
         $scope.click_end_button = function(){
             if(confirm("是否结束本次竞价？")){
                 $scope.disabled_end_button = true ;
+                var activity_object = Bidding.get_activity_object();
+                var activity = _(activity_object).findWhere({name:$routeParams.name});
                 _(activity.bids).findWhere({bid_name:$routeParams.bid}).bid_state = 2;
                 localStorage.setItem('activity_object',JSON.stringify( activity_object));
-                $location.path('/'+$routeParams.name + '/price_activity/'+$routeParams.bid+'/price_result');
+               $location.path('/'+$routeParams.name + '/price_activity/'+$routeParams.bid+'/price_result');
             }
         }
 

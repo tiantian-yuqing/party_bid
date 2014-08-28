@@ -9,9 +9,19 @@ angular.module('testApp')
         var activity_object = JSON.parse( localStorage.getItem('activity_object')) || {};
         $scope.jj_list = _(_(activity_object).findWhere({name:$routeParams.name}).bids).findWhere({bid_name:$routeParams.bid}).JJ_list;
 
-        console.log(setTimeout(function(){ $('#bid_resultsModal').modal('show')} ,0));
+        $scope.show_footer = _(_(activity_object).findWhere({name:$routeParams.name}).bids).findWhere({bid_name:$routeParams.bid}).show_result;
 
-        $scope.show_footer = setTimeout(function(){ $('#bid_resultsModal').modal('hide')} ,3000);
+    if($scope.show_footer == false){
+        setTimeout(function(){ $('#bid_resultsModal').modal('show')} ,0);
+        setTimeout(function(){ $('#bid_resultsModal').modal('hide')} ,3000);
+
+        $('#bid_resultsModal').on('hidden.bs.modal', function () {
+            $scope.show_footer = true ;
+            _(_(activity_object).findWhere({name:$routeParams.name}).bids).findWhere({bid_name:$routeParams.bid}).show_result = true ;
+            localStorage.setItem('activity_object',JSON.stringify(activity_object));
+            refresh_result_model();
+        });
+    }
 
         $scope.jjnumber = $routeParams.bid;
 

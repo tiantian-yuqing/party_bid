@@ -4,12 +4,14 @@ function Activity(name) {
     this.sign_up = [];
     this.bids = [];
     this.jjnumber = 1 ;
+
 }
 
 function Bid(i){
     this.bid_name  = "竞价"+i ;
     this.bid_state = 1 ;
     this.JJ_list = [] ;
+    this.show_result = false ;
 }
 
 function JJ(name,phone,price){
