@@ -21,7 +21,7 @@ get_bid_result = function(jj_list){
         price_object[price_arr[value]] =  price_object[price_arr[value]] || new PriceList(price_arr[value],0);
         price_object[price_arr[value]].number++;
     }
-//    console.log(price_object)
+ //   console.log(price_object)
 //    console.log((_.values(price_object)).where({number:1}));
 
     var number_sort =_(_.values(price_object)).where({number:1}).sort(function(a,b){return a-b});

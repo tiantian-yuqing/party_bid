@@ -7,16 +7,16 @@ function Bidding(name,phone){
 }
 
 Bidding.message_is_valuable = function(JJ_message) {                     //判断报名信息是否有效
-    var message_JJ = JJ_message.message.replace(/[ ]/g," ").slice(0,2).toUpperCase();
+    var message_JJ = JJ_message.message.replace(/[ ]/g,"").slice(0,2).toUpperCase();
     return ( message_JJ == "JJ" )
 };
 
 Bidding.exact_price = function(JJ_message){
-    return JJ_message.message.replace(/[ ]/g," ").slice(2,8);
+    return JJ_message.message.replace(/[ ]/g,"").slice(2,8);
 };
 
 Bidding.localStorage_json_message_name_phone = function(json_message) {    //把发过来的信息的名字和电话号码存进localstorage
-    var message_name = json_message.message.replace(/[ ]/g," ").slice(2,8);
+    var message_name = json_message.message.replace(/[ ]/g,"").slice(2,8);
     localStorage.setItem('json_message_jj.name',  JSON.stringify(message_name));
     localStorage.setItem('json_message_jj.phone', JSON.stringify( (json_message.phone)));
 };

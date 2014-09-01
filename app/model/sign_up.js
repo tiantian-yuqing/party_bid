@@ -4,7 +4,7 @@ function SignUP(name,phone){
 }
 
 SignUP.message_is_valuable = function(BM_message) {                     //判断报名信息是否有效
-    var message_BM = BM_message.message.replace(/[ ]/g," ").slice(0,2).toUpperCase();
+    var message_BM = BM_message.message.replace(/[ ]/g,"").slice(0,2).toUpperCase();
     var recent = JSON.parse(localStorage.getItem('recent'));
     var activity_object = JSON.parse(localStorage.getItem('activity_object'));
     var phone_duplicate =( _(_(activity_object).findWhere({name:recent}).sign_up).where({phone:BM_message.phone}) != "" );
@@ -12,7 +12,7 @@ SignUP.message_is_valuable = function(BM_message) {                     //判断
 };
 
 SignUP.get_json_message_name = function(json_message){
-    return json_message.message.replace(/[ ]/g," ").slice(2,8);
+    return json_message.message.replace(/[ ]/g,"").slice(2,8);
 };
 
 SignUP.bid_ing = function(){
