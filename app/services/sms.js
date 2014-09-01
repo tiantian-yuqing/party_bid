@@ -13,12 +13,9 @@ var native_accessor = {
     process_received_message: function (json_message) {
         var recent = JSON.parse(localStorage['recent']);
         var activity_object = JSON.parse( localStorage['activity_object']) || {};
-      //  console.log('activities:'+activity_object);
         var activity =  _.find(activity_object,function(activity){return activity.name == recent});
 
-     //   console.log('state:'+activity);
         var send_message = "";//str.replace(" ", "");
-   //   console.log( json_message.messages[0].message.replace(/[ ]/g,""))
 
         if( json_message.messages[0].message.replace(/[ ]/g,"").slice(0,2).toUpperCase() == "BM"){
             if (activity.state == 0) {
@@ -76,7 +73,6 @@ var native_accessor = {
 
 
         }
-        console.log(json_message.messages[0].phone)
         native_accessor.send_sms(json_message.messages[0].phone, send_message);
     }
 };

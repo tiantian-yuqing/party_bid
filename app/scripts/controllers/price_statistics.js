@@ -21,7 +21,9 @@ angular.module('testApp')
             $location.path('/'+recent + '/price_activity/'+$routeParams.bid+'/price_result');
         };
 
-        $scope.bid_result = _($scope.jj_list).findWhere({price:get_bid_result($scope.jj_list).price});
+        if(get_bid_result($scope.jj_list) != undefined) {
+            $scope.bid_result = _($scope.jj_list).findWhere({price: get_bid_result($scope.jj_list).price});
+        }
 
         $scope.price_object = get_price_and_number($scope.jj_list);
 
