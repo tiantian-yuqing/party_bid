@@ -52,3 +52,7 @@ button[disabled] {
     /*-moz-background-clip: padding-box;*/
     /*background-clip: padding-box;*/
 }
+
+.activity-color{
+    background-color: #ffff00 !important;
+}

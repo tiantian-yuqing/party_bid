@@ -43,3 +43,36 @@ Bidding.get_activity_object = function(){
     return  JSON.parse( localStorage.getItem('activity_object')) || {};
 };
 
+Bidding.no_bids_on_going = function () {
+    var recent = JSON.parse(localStorage['recent']);
+    var activity_object = JSON.parse( localStorage['activity_object']) || {};
+    var activity =  _(activity_object).findWhere({name : recent});
+    return _(activity.bids).findWhere({bid_state:1}) == undefined
+};
+
+Bidding.no_bids_ended = function () {
+    var recent = JSON.parse(localStorage['recent']);
+    var activity_object = JSON.parse( localStorage['activity_object']) || {};
+    var activity =  _(activity_object).findWhere({name : recent});
+    return  _(activity.bids).findWhere({bid_state:2}) == undefined
+};
+
+Bidding.bid_phone_not_existed = function (phone) {
+    var recent = JSON.parse(localStorage['recent']);
+    var activity_object = JSON.parse( localStorage['activity_object']) || {};
+    var activity =  _(activity_object).findWhere({name : recent});
+    return  _(_(activity.bids).findWhere({bid_state:1}).JJ_list).findWhere({phone:phone}) == undefined
+};
+
+Bidding.create_save_new_bid_person = function (json_message) {
+    var recent = JSON.parse(localStorage['recent']);
+    var activity_object = JSON.parse( localStorage['activity_object']) || {};
+    var activity =  _(activity_object).findWhere({name : recent});
+    var jj_person = new JJ();
+    jj_person.name  = _(activity.sign_up).findWhere({phone:json_message.messages[0].phone}).name ;
+    jj_person.phone = json_message.messages[0].phone ;
+    jj_person.price = Bidding.exact_price(json_message.messages[0]);
+    _(activity.bids).findWhere({bid_state:1}).JJ_list.push(jj_person);
+    localStorage['activity_object'] = JSON.stringify(activity_object);
+};
+
