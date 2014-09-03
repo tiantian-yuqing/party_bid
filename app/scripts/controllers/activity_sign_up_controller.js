@@ -2,7 +2,7 @@
 
 angular.module('testApp')
     .controller('activitySignUpCtrl', function ($scope, $location, $routeParams) {
-        var activity_object = JSON.parse( localStorage.getItem('activity_object')) ;
+        var activity_object = JSON.parse( localStorage.getItem('activity_object')) || {} ;
         $scope.back_to_activity_list = function () {
             $location.path('/activity_list') ;
         };
