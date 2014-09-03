@@ -43,7 +43,7 @@ Bidding.get_activity_object = function(){
     return  JSON.parse( localStorage.getItem('activity_object')) || {};
 };
 
-Bidding.no_bids_on_going = function () {
+Bidding.bid_on_going = function () {
     var recent = JSON.parse(localStorage['recent']);
     var activity_object = JSON.parse( localStorage['activity_object']) || {};
     var activity =  _(activity_object).findWhere({name : recent});

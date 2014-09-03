@@ -4,7 +4,7 @@
 function Message() {
     this.recent = JSON.parse(localStorage['recent']);
     this.activity_object = JSON.parse( localStorage['activity_object']) || {};
-    this.activity =  _( this.activity_object).findWhere({name :  this.recent});
+    this.activity =  _( this.activity_object).findWhere({name : this.recent});
 }
 
 Message.exact_letter = function(json_message){
@@ -12,7 +12,7 @@ Message.exact_letter = function(json_message){
 };
 
 Message.exact_message_name = function(json_message){
-    return json_message.messages[0].message.replace(/[ ]/g,"").slice(2,8);
+    return  json_message.messages[0].message.replace(/[ ]/g,"").slice(2,8);
 };
 
 Message_is_valuable = function(json_message) {                     //判断报名信息是否有效
@@ -36,25 +36,21 @@ Message.process = function (json_message){
     }
 
     if( Message.exact_letter(json_message) == 'JJ'){
-        if( SignUP.sign_up_phone_not_existed(json_message.messages[0].phone) ){
-            send_message = '对不起，您没有报名此次活动！'
-        }
-        else {
-            if ( Bidding.no_bids_on_going()){
-                 send_message = Bidding.no_bids_ended() ? '对不起，竞价尚未开始！':'对不起，竞价已结束！';
-            }
-            else{
-                if( Bidding.bid_phone_not_existed(json_message.messages[0].phone) ){
-                    send_message = '恭喜！您已出价成功' ;
+        var a = Number( SignUP.sign_up_phone_not_existed(json_message.messages[0].phone)) ;console.log("s")
+        var b = Number( Bidding.bid_on_going());
+        var c = Number( Bidding.bid_phone_not_existed(json_message.messages[0].phone));
+
+
+        switch(a+b+c){
+           case 0 : send_message = '对不起，您没有报名此次活动！';break;
+           case 1 : send_message =  Bidding.no_bids_ended() ? '对不起，竞价尚未开始！':'对不起，竞价已结束！';break;
+           case 2 : send_message ='您已成功出价，请勿重复出价！';break;
+           case 3 : send_message = '恭喜！您已出价成功' ;
                     Bidding.create_save_new_bid_person(json_message);
                     refresh_price_list();
-                }
-                else{
-                    send_message ='您已成功出价，请勿重复出价！'
-                }
-            }
         }
     }
+
     return send_message
 };
 
