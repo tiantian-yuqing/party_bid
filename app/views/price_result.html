@@ -1,6 +1,6 @@
 
 <header class="header" id="price_result">
-    {{jjnumber}}({{ jj_list | number}}人)
+    {{bid_number}}({{ current_bid.bid_people_list | number}}人)
     <div class="header-left">
         <button class="side-slide-trigger my-btn-style btn-4" ng-click='back_to_price_list()'>返回</button>
     </div>
@@ -11,7 +11,7 @@
 
 <ul class="list-style-1" >
     <!--<li ng-repeat=" jj_person in jj_list | orderBy:'price'" class="my-post-body">-->
-    <li ng-repeat=" jj_person in jj_list_sort" class="my-post-body">
+    <li ng-repeat=" jj_person in bid_people_list_sort_by_price" class="my-post-body">
         <span class="my-post-body"> {{position(jj_person)}}</span>
         {{jj_person.name}}
         <p class="my-post2-body">￥{{jj_person.price}}</p>
@@ -42,5 +42,5 @@
 </div>
 
 <footer>
-    <p  ng-show = "show_footer" align="center">竞价结果：{{bid_result.name}}     ￥{{bid_result.price}}    {{bid_result.phone}}</p>
+    <p  ng-show = "current_bid.show_result" align="center">竞价结果：{{bid_result.name}}     ￥{{bid_result.price}}    {{bid_result.phone}}</p>
 </footer>

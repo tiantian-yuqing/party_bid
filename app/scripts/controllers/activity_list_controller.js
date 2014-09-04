@@ -2,8 +2,9 @@
 
 angular.module('testApp')
     .controller('activityListCtrl', function ($scope, $location){
-      var activity_object = JSON.parse( localStorage.getItem('activity_object')) ;
-      if (activity_object == null){
+      var activity_object = get_activity_object();
+
+      if (_(activity_object).isEmpty()){
           $location.path('/create_activity');
       }
 
@@ -16,14 +17,11 @@ angular.module('testApp')
       };
 
       $scope.change_color = function(activity_name){
-        //if( activity_object[activity_name].state == 1 || _(activity_object[activity_name].bids).findWhere({bid_state:1})!= undefined ){
-          if(_(activity_object).findWhere({name:activity_name}).state == 1 || _(_(activity_object).findWhere({name:activity_name}).bids).findWhere({bid_state:1})!= undefined ){
+          var activity = Activity.find_activity_by_name(activity_name) ;
+          if(activity.state == 1 || Bidding.activity_exist_bid_on_going(activity) ){
               return "activity-color";
-        }
+          }
       };
-//console.log(_.keys(activity_object));(
-//        console.log( Activity.get_object_length(activity_object));
-//      console.log(_(activity_object).pluck('name'));
 
       $scope.activity_list = _(activity_object).pluck('name').reverse() ;
 
@@ -32,5 +30,4 @@ angular.module('testApp')
            $scope.disabled_create_activity_button = true ;
          }
       }
-
     });

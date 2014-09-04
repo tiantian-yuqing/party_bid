@@ -2,34 +2,31 @@
 
 angular.module('testApp')
     .controller('activitySignUpCtrl', function ($scope, $location, $routeParams) {
-        var activity_object = JSON.parse( localStorage.getItem('activity_object')) || {} ;
+        $scope.activity = Activity.find_activity_by_name($routeParams.name);
+
         $scope.back_to_activity_list = function () {
             $location.path('/activity_list') ;
         };
+        $scope.routeParams = $routeParams ;
 
-        var activity = _(activity_object).findWhere({name:$routeParams.name});
-        $scope.activity = activity;
-
-        $scope.activity_list = activity.sign_up;
-
-        $scope.disabled_start_button = (((activity.state !=1) && (_(activity_object).findWhere({state:1}) != undefined)))|| SignUP.bid_ing() ;
-
-        $scope.click_start_button = function(){
-            if( activity.state != 1 || confirm("是否确认结束报名")){
-                activity.state = activity.state == 1 ? 2 : 1;
-            }
-            if(activity.state == 2){
-                $location.path( '/'+$routeParams.name + '/price_list') ;
-            }
-            activity_object = JSON.parse( localStorage.getItem('activity_object')) ;
-           _(activity_object).findWhere({name:$routeParams.name}).state = activity.state ;
-
-            SignUP.localstorage_activity_object (activity_object);
-            SignUP.localstorage_recent($routeParams.name);
-        };
+        $scope.disabled_start_button = (($scope.activity.state !=1) && Activity.on_going()) || Bidding.activity_object_exist_bid_on_going() ;
 
         $scope.go_price_list = function(){
             $location.path( '/'+$routeParams.name + '/price_list') ;
+        };
+
+        $scope.click_start_button = function(){
+            if( $scope.activity.state != 1 || confirm("是否确认结束报名")){
+                $scope.activity.state = $scope.activity.state == 1 ? 2 : 1;
+            }
+            if($scope.activity.state == 2){
+                $location.path( '/'+$routeParams.name + '/price_list') ;
+            }
+            var activity_object = get_activity_object();
+            _(activity_object).findWhere({name : $routeParams.name}).state = $scope.activity.state ;
+
+            save_activity_object(activity_object);
+            save_recent($routeParams.name);
         };
 
     });

@@ -3,28 +3,26 @@
  */
 angular.module('testApp')
     .controller('priceStatisticsCtrl', function ($scope, $location, $routeParams) {
-        console.log($routeParams);//Object {name: "a", bid: "竞价1"}
-
         var recent = JSON.parse(localStorage.getItem('recent'));
         var activity_object = JSON.parse( localStorage.getItem('activity_object')) || {};
-        $scope.show_footer = _(_(activity_object).findWhere({name:$routeParams.name}).bids).findWhere({bid_name:$routeParams.bid}).show_result;
+        var activity = _(activity_object).findWhere({name : $routeParams.name});
 
-        $scope.jjnumber = $routeParams.bid;
+        $scope.current_bid =  _(activity.bids).findWhere({bid_name:$routeParams.bid});
 
-        $scope.jj_list = _(_(activity_object).findWhere({name:$routeParams.name}).bids).findWhere({bid_name:$routeParams.bid}).JJ_list;
+        $scope.bid_number = $routeParams.bid;
 
         $scope.back_to_price_list = function(){
             $location.path( '/'+recent + '/price_list') ;
         };
 
-        $scope.click_list_button = function(){
+        $scope.go_price_result = function(){
             $location.path('/'+recent + '/price_activity/'+$routeParams.bid+'/price_result');
         };
 
-        if(get_bid_result($scope.jj_list) != undefined) {
-            $scope.bid_result = _($scope.jj_list).findWhere({price: get_bid_result($scope.jj_list).price});
-        }
+        $scope.price_number_list = get_price_and_number($scope.current_bid.bid_people_list);
 
-        $scope.price_object = get_price_and_number($scope.jj_list);
+        if(get_bid_result( $scope.current_bid.bid_people_list) != undefined) {
+            $scope.bid_result = _( $scope.current_bid.bid_people_list).findWhere({price: get_bid_result( $scope.current_bid.bid_people_list).price});
+        }
 
     });

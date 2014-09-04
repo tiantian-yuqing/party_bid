@@ -7,28 +7,19 @@ var refresh_sign_up = function(){
     if(refresh_page){
         var scope = angular.element(refresh_page).scope();
         scope.$apply(function () {
-            var recent = JSON.parse( localStorage.getItem('recent')) ;
-            var activity_object = JSON.parse( localStorage.getItem('activity_object')) ;
-            scope.activity_list = _.find(activity_object,function(activity){
-                return activity.name == recent}).sign_up;
-
-            console.log(scope.activity_list);
+            scope.activity = Activity.find_activity_by_name(scope.routeParams.name);
         });
     }
 };
 
 var refresh_price_list = function(){
-    console.log('run refresh');
     var refresh_page = document.getElementById('price_activity');
     if(refresh_page){
         var scope = angular.element(refresh_page).scope();
-
         scope.$apply(function () {
-            var recent = JSON.parse( localStorage.getItem('recent')) ;
             var activity_object = JSON.parse( localStorage.getItem('activity_object')) ;
-
-            scope.jj_list = _(_(activity_object).findWhere({name:scope.routeParams.name}).bids).findWhere({bid_name:scope.routeParams.bid}).JJ_list;
-
+            var activity = _(activity_object).findWhere({name : scope.routeParams.name});
+            scope.current_bid =  _(activity.bids).findWhere({bid_name:scope.routeParams.bid});
         });
     }
 

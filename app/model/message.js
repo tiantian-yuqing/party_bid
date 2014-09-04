@@ -19,7 +19,7 @@ Message.is_valuable = function(json_message) {
 };
 
 Message.process = function (json_message){
-    var activity = Activity.find_activity_by_recent();
+    var activity = Activity.find_activity_by_name();
     var send_message = "" ;
     if( Message.exact_letter(json_message) == 'BM'){
         switch (activity.state ) {
@@ -33,10 +33,10 @@ Message.process = function (json_message){
         }
     }
 
-//    if( Message.exact_letter(json_message) == 'JJ'){
+//    if( Message.exact_letter(json_message) == 'Bid_person_message'){
 //
 //        var a = String( SignUP.sign_up_phone_not_existed(json_message.messages[0].phone)) ;
-//        var b = String( Bidding.bid_on_going());
+//        var b = String( Bidding.activity_exist_bid_on_going());
 //        var c = String( Bidding.bid_phone_not_existed(json_message.messages[0].phone));
 //        var t = a+b+c;console(t);
 //
@@ -54,7 +54,7 @@ Message.process = function (json_message){
             send_message = '对不起，您没有报名此次活动！'
         }
         else {
-            if ( !Bidding.bid_on_going()){
+            if ( !Bidding.activity_exist_bid_on_going()){
                 send_message = Bidding.no_bids_ended() ? '对不起，竞价尚未开始！':'对不起，竞价已结束！';
             }
             else{
