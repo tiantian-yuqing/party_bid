@@ -14,16 +14,7 @@ Activity.get_object_length = function (object) {
         return count;
 };
 
-//Activity.find_activity_by_name = function(){
-//    var recent = JSON.parse(localStorage['recent']);
-//    var activity_object = get_activity_object();
-//    return  _(activity_object).findWhere({name : recent});
-//};
-//
-//Activity.find_activity_by_name = function(name){
-//    var activity_object = get_activity_object();
-//    return  _(activity_object).findWhere({name : name})  ;
-//};
+
 Activity.find_activity_by_name = function(name){
     var recent = get_recent();
     var activity_object = get_activity_object();

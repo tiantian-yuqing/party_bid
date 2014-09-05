@@ -14,9 +14,8 @@ angular.module('testApp')
             return $scope.bid_people_list_sort_by_price.indexOf(jj_person) + 1 ;
         };
 
-        $scope.bid_people_list_sort_by_price = ( $scope.current_bid.bid_people_list).sort(function(a,b) {
-            return a.price - b.price
-        });
+        $scope.bid_people_list_sort_by_price = _($scope.current_bid.bid_people_list).sortBy(
+            function(element){ return element.price} );
 
         $scope.back_to_price_list = function(){
             $location.path( '/'+$routeParams.name + '/price_list') ;
@@ -28,8 +27,9 @@ angular.module('testApp')
 
 
         if( !$scope.current_bid.show_result ){
-            if( get_bid_result($scope.current_bid.bid_people_list) != undefined ){
-                $scope.bid_result = _($scope.current_bid.bid_people_list).findWhere({price:get_bid_result($scope.jj_list).price});
+            if( get_bid_result($scope.current_bid.bid_people_list) != "" ){
+                $scope.bid_result = get_bid_result($scope.current_bid.bid_people_list)[0];
+                console.log($scope.bid_result)
                 setTimeout(function(){ $('#bid_resultsModal').modal('show')} ,0);
                 setTimeout(function(){ $('#bid_resultsModal').modal('hide')} ,3000);
 
@@ -43,6 +43,8 @@ angular.module('testApp')
                 $('#bid_failed').modal('show')
             }
         }
+
+
     });
 
 

@@ -16,7 +16,7 @@ angular.module('testApp')
             $location.path('/'+$routeParams.name+'/activity_sign_up');
         };
 
-        $scope.disabled_start_button = Activity.on_going()|| Bidding.activity_object_exist_bid_on_going();
+        $scope.disabled_start_button = Activity.on_going()|| Bid.activity_object_exist_bid_on_going();
 
         $scope.click_start_button = function(){
             activity.bid_number++;

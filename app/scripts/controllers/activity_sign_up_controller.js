@@ -9,7 +9,7 @@ angular.module('testApp')
         };
         $scope.routeParams = $routeParams ;
 
-        $scope.disabled_start_button = (($scope.activity.state !=1) && Activity.on_going()) || Bidding.activity_object_exist_bid_on_going() ;
+        $scope.disabled_start_button = (($scope.activity.state !=1) && Activity.on_going()) || Bid.activity_object_exist_bid_on_going() ;
 
         $scope.go_price_list = function(){
             $location.path( '/'+$routeParams.name + '/price_list') ;

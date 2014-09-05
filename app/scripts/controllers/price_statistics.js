@@ -20,9 +20,9 @@ angular.module('testApp')
         };
 
         $scope.price_number_list = get_price_and_number($scope.current_bid.bid_people_list);
-
-        if(get_bid_result( $scope.current_bid.bid_people_list) != undefined) {
-            $scope.bid_result = _( $scope.current_bid.bid_people_list).findWhere({price: get_bid_result( $scope.current_bid.bid_people_list).price});
+console.log($scope.price_number_list)
+        if(get_bid_result($scope.current_bid.bid_people_list) != "") {
+            $scope.bid_result = get_bid_result($scope.current_bid.bid_people_list)[0];
         }
 
     });
