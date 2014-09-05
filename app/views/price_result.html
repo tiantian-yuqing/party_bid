@@ -5,7 +5,7 @@
         <button class="side-slide-trigger my-btn-style btn-4" ng-click='back_to_price_list()'>返回</button>
     </div>
     <div class="header-right">
-        <button class="my-btn-style btn-4" ng-click="click_statistics_button()" >统计</button>
+        <button class="my-btn-style btn-4" ng-click="go_price_statistics()" >统计</button>
     </div>
 </header>
 
@@ -20,17 +20,17 @@
 </ul>
 
 
-    <div id="bid_resultsModal" class="modal my-modal fade in" >
-        <div class="modal-header">
-            <p class="close" data-dismiss="modal">×</p>
-        </div>
-
-        <div class="my-modal-body" align="center" >
-            <p>{{bid_result.name}}   ￥{{bid_result.price}} </p>
-            <p>{{bid_result.phone}}</p>
-            <p>竞价成功</p>
-        </div>
+<div id="bid_resultsModal" class="modal my-modal fade in" >
+    <div class="modal-header">
+        <p class="close" data-dismiss="modal">×</p>
     </div>
+
+    <div class="my-modal-body" align="center" >
+        <p>{{bid_result.name}}   ￥{{bid_result.price}} </p>
+        <p>{{bid_result.phone}}</p>
+        <p>竞价成功</p>
+    </div>
+</div>
 
 <div id="bid_failed" class="modal my-modal fade in" >
     <div class="modal-header">

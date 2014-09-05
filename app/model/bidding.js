@@ -1,7 +1,6 @@
 /**
  * Created by tiantian on 14-8-22.
  */
-
 function Bid(i){
     this.bid_name  = "竞价"+i ;
     this.bid_state = 1 ;
@@ -51,6 +50,7 @@ Bid.create_save_new_bid_person = function (json_message) {
     var recent = JSON.parse(localStorage['recent']);
     var activity_object = JSON.parse( localStorage['activity_object']) || {};
     var activity =   _(activity_object).findWhere({name : recent});
+
     var jj_person = new Bid_person_message();
     jj_person.name  = _(activity.sign_up).findWhere({phone:json_message.messages[0].phone}).name ;
     jj_person.phone = json_message.messages[0].phone ;

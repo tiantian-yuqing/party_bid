@@ -5,19 +5,17 @@ function Price(){
 }
 
 Price.get_price_and_number = function(bid_list){
-    var price_and_number = _.chain(bid_list)
-        .sortBy(function(value){return value.price})
+    return   _.chain(bid_list)
+        .sortBy("price")
         .pluck('price')
         .countBy()
         .pairs()
         .value();
-    return price_and_number  ;  // {6: 1, 8: 2}
-
 };
 
 Price.get_bid_result = function(bid_list){
     var lowest_price = _.chain(bid_list)
-        .sortBy(function(value){return value.price})
+        .sortBy("price")
         .groupBy(function(value){return value.price})
         .find(function(value){return value.length ==1 })
         .value();

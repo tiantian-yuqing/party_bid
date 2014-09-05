@@ -19,7 +19,7 @@ angular.module('testApp')
             $location.path('/'+recent + '/price_activity/'+$routeParams.bid+'/price_result');
         };
 
-        $scope.price_number_list = get_price_and_number($scope.current_bid.bid_people_list);
+        $scope.price_number_list = Price.get_price_and_number($scope.current_bid.bid_people_list);
 
         $scope.bid_result = Price.get_bid_result($scope.current_bid.bid_people_list);
 

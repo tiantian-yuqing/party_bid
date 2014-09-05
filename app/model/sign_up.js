@@ -4,10 +4,11 @@ function SignUP(name,phone){
 }
 
 SignUP.create_save_new_sign_up_person = function (json_message) {
-    var sign_up_person = new SignUP(Message.exact_message_name(json_message),json_message.messages[0].phone);
     var recent = JSON.parse(localStorage['recent']);
     var activity_object = JSON.parse( localStorage['activity_object']) || {};
     var activity =   _(activity_object).findWhere({name : recent});
+    var sign_up_person = new SignUP(Message.exact_message_name(json_message),json_message.messages[0].phone);
+
     activity.sign_up.unshift(sign_up_person);
     localStorage['activity_object'] = JSON.stringify( activity_object);
 };
