@@ -25,14 +25,12 @@ angular.module('testApp')
             $location.path('/'+$routeParams.name + '/price_activity/'+$routeParams.bid+'/price_statistics');
         };
 
+        $scope.bid_result = Price.get_bid_result($scope.current_bid.bid_people_list);
 
         if( !$scope.current_bid.show_result ){
-            if( get_bid_result($scope.current_bid.bid_people_list) != "" ){
-                $scope.bid_result = get_bid_result($scope.current_bid.bid_people_list)[0];
-                console.log($scope.bid_result)
+            if( Price.get_bid_result($scope.current_bid.bid_people_list) != undefined ){
                 setTimeout(function(){ $('#bid_resultsModal').modal('show')} ,0);
                 setTimeout(function(){ $('#bid_resultsModal').modal('hide')} ,3000);
-
                 $('#bid_resultsModal').on('hidden.bs.modal', function () {
                     $scope.current_bid.show_result = true ;
                     localStorage.setItem('activity_object',JSON.stringify(activity_object));
@@ -43,7 +41,6 @@ angular.module('testApp')
                 $('#bid_failed').modal('show')
             }
         }
-
 
     });
 

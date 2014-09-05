@@ -11,11 +11,11 @@
 
 <ul class="list-style-1">
     <li ng-repeat=" price in price_number_list ">
-        <span>￥ {{price.price}}</span>
-        <span class="position1">{{price.number}}人</span>
+        <span>￥ {{price[0]}}</span>
+        <span class="position1">{{price[1]}}人</span>
     </li>
 </ul>
 
 <footer>
-    <p  ng-show = "current_bid.show_result" align="center" >竞价结果：{{bid_result.name}} ￥{{bid_result.price}}{{bid_result.phone}}</p>
+    <p  ng-show = "current_bid.show_result" align="center" >竞价结果：{{bid_result.name}} ￥{{bid_result.price}}  {{bid_result.phone}}</p>
 </footer>
