@@ -11,16 +11,16 @@ angular.module('testApp')
         };
 
         $scope.click_create_button = function(){
-            if( Activity.find_activity_by_name($scope.activity_name) != undefined ){
-                $scope.warning = true ;
-            }
-            else{
-                Activity.create_new_activity($scope.activity_name);
-                $location.path('/'+ $scope.activity_name+'/activity_sign_up');
-            }
             if( !Activity.on_going() ){
                 save_recent($scope.activity_name) ;
             }
+            if( Activity.find_activity_by_name($scope.activity_name) != undefined ){
+                $scope.warning = true ;
+                return;
+            }
+            var activity = new Activity($scope.activity_name);
+            activity.create_new_activity();
+            $location.path('/'+ $scope.activity_name+'/activity_sign_up');
         };
 
     });

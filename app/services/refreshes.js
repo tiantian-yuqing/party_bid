@@ -35,8 +35,3 @@ refresh_result_model = function(){
     }
 };
 
-//$('#bid_resultsModal').on('hidden.bs.modal', function () {
-//    $scope.current_bid.show_result = true ;
-//    localStorage.setItem('activity_object',JSON.stringify(activity_object));
-//    refresh_result_model();
-//});

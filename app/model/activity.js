@@ -21,10 +21,12 @@ Activity.find_activity_by_name = function(name){
     return  _(activity_object).findWhere({name :name || recent});
 };
 
-Activity.create_new_activity = function(activity_name){
+Activity.prototype.create_new_activity = function(){
     var activity_object = get_activity_object();
-    activity_object[Activity.get_object_length(activity_object)] = new Activity(activity_name);
-    localStorage.setItem('activity_object',JSON.stringify( activity_object));
+    activity_object[Activity.get_object_length(activity_object)] = this;
+//    console.log(this);
+//        new Activity(activity_name);
+    save_activity_object(activity_object);
 };
 
 Activity.on_going = function(){
@@ -32,9 +34,9 @@ Activity.on_going = function(){
     return  _(activity_object).where({state:1}) != "" ;
 };
 
-//Activity.change_color = function(activity_name) {
-//    var activity = Activity.find_activity_by_name(activity_name);
-//    if (activity.state == 1 || Bid.activity_or_recent_exist_bid_on_going(activity)) {
-//        return "activity-color";
-//    }
-//};
+Activity.change_color = function(activity_name) {
+    var activity = Activity.find_activity_by_name(activity_name);
+    if (activity.state == 1 || Bid.activity_or_recent_exist_bid_on_going(activity)) {
+        return "activity-color";
+    }
+};

@@ -23,7 +23,7 @@ Bid.activity_object_exist_bid_on_going = function(){
     var flag = false;
     _(activity_object).each(function(element){
        if(  _(element.bids).findWhere({bid_state:1} ) != undefined ){
-           flag = true ;
+           flag =  true ;
        }
     });
     return  flag
@@ -54,8 +54,8 @@ Bid.create_new_bid = function (name) {
 };
 
 Bid.create_save_new_bid_person = function (json_message) {
-    var recent = JSON.parse(localStorage['recent']);
-    var activity_object = JSON.parse( localStorage['activity_object']) || {};
+    var recent = get_recent();
+    var activity_object = get_activity_object();
     var activity =   _(activity_object).findWhere({name : recent});
 
     var jj_person = new Bid_person_message();
