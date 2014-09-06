@@ -84,7 +84,7 @@ Bid.find_bids = function(routeParams){
 
 Bid.change_bid_state = function(routeParams){
     var activity_object = get_activity_object();
-//    var activity = _(activity_object).findWhere({name:routeParams.name});
-    Bid.find_bids(routeParams).bid_state = 2;
+    var activity = _(activity_object).findWhere({name:routeParams.name});
+    _(activity.bids).findWhere({bid_name:routeParams.bid}).bid_state = 2;
     save_activity_object( activity_object);
 };

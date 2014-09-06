@@ -24,3 +24,11 @@ SignUP.find_person_by_phone = function(phone){
     var activity =   _(activity_object).findWhere({name : recent});
     return _(activity.sign_up).findWhere({phone:phone})
 };
+
+SignUP.change_sign_up_state = function(routeParams){
+    var activity_object = get_activity_object();//////////////
+    _(activity_object).findWhere({name : routeParams.name}).state = $scope.activity.state ;
+
+    save_activity_object(activity_object);
+    save_recent(routeParams.name);
+}

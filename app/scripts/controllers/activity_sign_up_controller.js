@@ -22,11 +22,12 @@ angular.module('testApp')
             if($scope.activity.state == 2){
                 $location.path( '/'+$routeParams.name + '/price_list') ;
             }
-            var activity_object = get_activity_object();
-            _(activity_object).findWhere({name : $routeParams.name}).state = $scope.activity.state ;
-
-            save_activity_object(activity_object);
-            save_recent($routeParams.name);
+            SignUP.change_sign_up_state($routeParams);
+//            var activity_object = get_activity_object();
+//            _(activity_object).findWhere({name : $routeParams.name}).state = $scope.activity.state ;
+//
+//            save_activity_object(activity_object);
+//            save_recent($routeParams.name);
         };
 
     });
