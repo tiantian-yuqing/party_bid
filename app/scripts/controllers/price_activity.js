@@ -23,8 +23,8 @@ angular.module('testApp')
 
         $scope.click_end_button = function(){
             if(confirm("是否结束本次竞价？")){
-                $scope.disabled_end_button = true ;
                 Bid.change_bid_state($routeParams);
+                $scope.disabled_end_button = true ;
                 $location.path('/'+$routeParams.name + '/price_activity/'+$routeParams.bid+'/price_result');
             }
         };

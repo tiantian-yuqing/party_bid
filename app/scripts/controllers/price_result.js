@@ -3,10 +3,7 @@
  */
 angular.module('testApp')
     .controller('priceResultCtrl', function ($scope, $location, $routeParams) {
-        var activity_object = get_activity_object();
-        var activity = _(activity_object).findWhere({name : $routeParams.name});
-
-        $scope.current_bid =  _(activity.bids).findWhere({bid_name:$routeParams.bid});
+        $scope.current_bid = Bid.find_bids($routeParams);
 
         $scope.bid_number = $routeParams.bid;
 
@@ -35,6 +32,11 @@ angular.module('testApp')
                 $('#bid_failed').modal('show')
             }
         }
+
+        $('#bid_resultsModal').on('hidden.bs.modal', function () {
+            $scope.current_bid.show_result = Price.change_show_result($routeParams) ;
+            refresh_result_model();
+        });
 
     });
 

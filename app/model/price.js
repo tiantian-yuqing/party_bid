@@ -28,3 +28,12 @@ Price.get_bid_result = function(bid_list){
     }
 
 };
+
+Price.change_show_result = function(routeParams){
+    var activity_object = get_activity_object();
+    var activity = _(activity_object).findWhere({name :routeParams.name});
+    var current_bid =  _(activity.bids).findWhere({bid_name:routeParams.bid});
+    current_bid.show_result = true ;
+    save_activity_object(activity_object);
+    return true ;
+};

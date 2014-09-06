@@ -26,19 +26,17 @@ refresh_price_list = function(){
 };
 
 refresh_result_model = function(){
-    var refresh_page = document.getElementById('price_result'); console.log("!")
+    var refresh_page = document.getElementById('price_result');
     if(refresh_page){
         var scope = angular.element(refresh_page).scope();
          scope.$apply(function () {
              scope.show_footer = true ;
         })
-
     }
-
 };
 
-$('#bid_resultsModal').on('hidden.bs.modal', function () {
-    $scope.current_bid.show_result = true ;
-    localStorage.setItem('activity_object',JSON.stringify(activity_object));
-    refresh_result_model();
-});
+//$('#bid_resultsModal').on('hidden.bs.modal', function () {
+//    $scope.current_bid.show_result = true ;
+//    localStorage.setItem('activity_object',JSON.stringify(activity_object));
+//    refresh_result_model();
+//});
