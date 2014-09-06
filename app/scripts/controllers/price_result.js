@@ -16,7 +16,6 @@ angular.module('testApp')
 
         $scope.bid_people_list_sort_by_price = _($scope.current_bid.bid_people_list).sortBy("price" );
 
-
         $scope.back_to_price_list = function(){
             $location.path( '/'+$routeParams.name + '/price_list') ;
         };

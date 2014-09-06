@@ -19,10 +19,14 @@ Bid.exact_price = function(JJ_message){
 };
 
 Bid.activity_object_exist_bid_on_going = function(){
-    var activity_object = JSON.parse( localStorage.getItem('activity_object')) || {};
+    var activity_object = get_activity_object();
+    var flag = false;
     _(activity_object).each(function(element){
-        return _(element.bids).findWhere({bid_state:1}) != undefined
-    })
+       if(  _(element.bids).findWhere({bid_state:1} ) != undefined ){
+           flag = true ;
+       }
+    });
+    return  flag
 };
 
 Bid.activity_or_recent_exist_bid_on_going = function (activity) {
@@ -40,10 +44,13 @@ Bid.bid_phone_not_existed = function (phone) {
     return  _(_(activity.bids).findWhere({bid_state:1}).bid_people_list).findWhere({phone:phone}) == undefined
 };
 
-Bid.create_new_bid = function (activity) {
+Bid.create_new_bid = function (name) {
+    var activity_object = get_activity_object();
+    var activity =  _(activity_object).findWhere({name :name});
     var biding = new Bid(activity.bid_number);
     activity.bids.unshift(biding);
     activity.bid_number++;
+    save_activity_object(activity_object);
 };
 
 Bid.create_save_new_bid_person = function (json_message) {
@@ -52,11 +59,15 @@ Bid.create_save_new_bid_person = function (json_message) {
     var activity =   _(activity_object).findWhere({name : recent});
 
     var jj_person = new Bid_person_message();
-    jj_person.name  = _(activity.sign_up).findWhere({phone:json_message.messages[0].phone}).name ;
+    jj_person.name  = SignUP.find_person_by_phone(json_message.messages[0].phone).name ;
     jj_person.phone = json_message.messages[0].phone ;
     jj_person.price = Bid.exact_price(json_message.messages[0]);
 
-    _(activity.bids).findWhere({bid_state:1}).bid_people_list.push(jj_person);
+    Bid.on_going(activity).bid_people_list.push(jj_person);
     localStorage['activity_object'] = JSON.stringify(activity_object);
+};
+
+Bid.on_going = function(activity){
+   return  _(activity.bids).findWhere({bid_state:1})
 };
 

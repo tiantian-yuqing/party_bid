@@ -3,7 +3,7 @@ function Activity(name) {
     this.state = 0 ;
     this.sign_up = [];
     this.bids = [];
-    this.bid_number = 0 ;
+    this.bid_number = 1 ;
 }
 
 Activity.get_object_length = function (object) {
@@ -31,3 +31,10 @@ Activity.on_going = function(){
     var activity_object = get_activity_object();
     return  _(activity_object).where({state:1}) != "" ;
 };
+
+//Activity.change_color = function(activity_name) {
+//    var activity = Activity.find_activity_by_name(activity_name);
+//    if (activity.state == 1 || Bid.activity_or_recent_exist_bid_on_going(activity)) {
+//        return "activity-color";
+//    }
+//};

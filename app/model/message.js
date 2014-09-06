@@ -33,22 +33,6 @@ Message.process = function (json_message){
         }
     }
 
-//    if( Message.exact_letter(json_message) == 'Bid_person_message'){
-//
-//        var a = String( SignUP.sign_up_phone_not_existed(json_message.messages[0].phone)) ;
-//        var b = String( Bid.activity_or_recent_exist_bid_on_going());
-//        var c = String( Bid.bid_phone_not_existed(json_message.messages[0].phone));
-//        var t = a+b+c;console(t);
-//
-//        switch(a+b+c){
-//           case 0 : send_message = '对不起，您没有报名此次活动！';break;
-//           case 1 : send_message =  Bid.no_bids_ended() ? '对不起，竞价尚未开始！':'对不起，竞价已结束！';break;
-//           case 2 : send_message ='您已成功出价，请勿重复出价！';break;
-//           case 3 : send_message = '恭喜！您已出价成功' ;
-//                    Bid.create_save_new_bid_person(json_message);
-//                    refresh_price_list();
-//        }
-//    }
     if( Message.exact_letter(json_message) == 'JJ'){
         if( SignUP.sign_up_phone_not_existed(json_message.messages[0].phone) ){
             send_message = '对不起，您没有报名此次活动！'

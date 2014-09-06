@@ -30,7 +30,7 @@ angular.module('testApp')
                 var activity_object = get_activity_object();
                 var activity = _(activity_object).findWhere({name:$routeParams.name});
                 _(activity.bids).findWhere({bid_name:$routeParams.bid}).bid_state = 2;
-                localStorage.setItem('activity_object',JSON.stringify( activity_object));
+                save_activity_object( activity_object);
                $location.path('/'+$routeParams.name + '/price_activity/'+$routeParams.bid+'/price_result');
             }
         };
@@ -46,12 +46,12 @@ angular.module('testApp')
 //      "sign_up":[],
 //      "bids":[],
 //      "bid_number":1},
-// "1":{"name":"scdcd",
+//"1":{"name":"scdcd",
 //      "state":0,
 //      "sign_up":[],
 //      "bids":[],
 //      "bid_number":1},
-// "2":{"name":"cd213",
+//"2":{"name":"cd213",
 //      "state":2,
 //      "sign_up":[{"name":"王五","phone":"189900971077"},
 //                 {"name":"李四","phone":"189900971078"},
