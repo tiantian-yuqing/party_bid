@@ -5,10 +5,7 @@
 
 angular.module('testApp')
     .controller('priceActivityCtrl', function ($scope, $location,$routeParams){
-        var activity_object = get_activity_object();
-        var activity = _(activity_object).findWhere({name : $routeParams.name});
-
-        $scope.current_bid =  _(activity.bids).findWhere({bid_name:$routeParams.bid});
+        $scope.current_bid = Bid.find_bids($routeParams);
 
         $scope.bid_number = $routeParams.bid ;
 
@@ -27,11 +24,8 @@ angular.module('testApp')
         $scope.click_end_button = function(){
             if(confirm("是否结束本次竞价？")){
                 $scope.disabled_end_button = true ;
-                var activity_object = get_activity_object();
-                var activity = _(activity_object).findWhere({name:$routeParams.name});
-                _(activity.bids).findWhere({bid_name:$routeParams.bid}).bid_state = 2;
-                save_activity_object( activity_object);
-               $location.path('/'+$routeParams.name + '/price_activity/'+$routeParams.bid+'/price_result');
+                Bid.change_bid_state($routeParams);
+                $location.path('/'+$routeParams.name + '/price_activity/'+$routeParams.bid+'/price_result');
             }
         };
     });

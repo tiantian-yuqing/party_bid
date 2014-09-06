@@ -71,3 +71,20 @@ Bid.on_going = function(activity){
    return  _(activity.bids).findWhere({bid_state:1})
 };
 
+Bid.change_color = function(activity,bid_name){
+    if( _(activity.bids).findWhere({bid_name:bid_name}).bid_state == 1){
+        return "activity-color";
+    }
+};
+
+Bid.find_bids = function(routeParams){
+    var activity = Activity.find_activity_by_name(routeParams.name);
+    return _(activity.bids).findWhere({bid_name:routeParams.bid});
+};
+
+Bid.change_bid_state = function(routeParams){
+    var activity_object = get_activity_object();
+//    var activity = _(activity_object).findWhere({name:routeParams.name});
+    Bid.find_bids(routeParams).bid_state = 2;
+    save_activity_object( activity_object);
+};

@@ -22,10 +22,8 @@ angular.module('testApp')
             $location.path('/'+ $routeParams.name + '/price_activity/'+ "竞价"+ $scope.activity.bid_number);
         };
 
-        $scope.change_color = function(bid){
-            if( _($scope.activity.bids).findWhere({bid_name:bid}).bid_state == 1){
-                return "activity-color";
-            }
+        $scope.change_color = function(activity,bid){
+            return Bid.change_color(activity,bid);
         };
 
         $scope.bids_list = _.pluck($scope.activity.bids,'bid_name');
